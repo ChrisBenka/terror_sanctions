@@ -46,8 +46,8 @@
 #   def delete(conn, %{"id" => id}) do
 #     terror_group_method_of_finance = Repo.get!(TerrorGroupMethodOfFinance, id)
 
-#     # Here we use delete! (with a bang) because we expect
-#     # it to always work (and if it does not, it will raise).
+#      #Here we use delete! (with a bang) because we expect
+#      #it to always work (and if it does not, it will raise).
 #     Repo.delete!(terror_group_method_of_finance)
 
 #     send_resp(conn, :no_content, "")
