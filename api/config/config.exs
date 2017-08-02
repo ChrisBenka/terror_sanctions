@@ -22,6 +22,14 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :guardian, Guardian,
+  issuer: "Sling",
+  ttl: {30, :days},
+  verify_issuer: true,
+  serializer: Sling.GuardianSerializer,
+  secret_key: "TjHK6tfDkO5/qKD+u9tFfTIhbKe3q1Vm9fpbne6hzPoGESEh/9R7ytwJBykgF5H+"
+
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
