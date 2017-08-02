@@ -3,16 +3,17 @@ defmodule Terror.Repo.Migrations.CreateTerrorGroup do
 
   def change do
     create table(:terrorgroups) do
-      add :name, :string
-      add :place_of_origin, :string
-      add :date_of_origin, :date
-      add :mission, :text
-      add :report_title, :text
-      add :report, :text
-      add :source, :text
+      add :name, :string, null: false
+      add :place_of_origin, :string, null: false
+      add :date_of_origin, :date, null: false
+      add :mission, :text, null: false
+      add :report_title, :text, null: false
+      add :report, :text,null: false
+      add :sources, :text,null: false
 
       timestamps()
     end
+    create unique_index(:terrorgroups, [:report_title])
 
   end
 end

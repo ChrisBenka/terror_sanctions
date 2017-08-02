@@ -9,6 +9,8 @@ defmodule Terror.TerrorGroup do
     field :report_title, :string
     field :report, :string
     field :source, :string
+    has_many :terrorgroupmethodsoffinance, Terror.TerrorGroupMethodOfFinance
+    has_many :terrorgrouplocations, Terror.TerrorGroupLocation
 
     timestamps()
   end

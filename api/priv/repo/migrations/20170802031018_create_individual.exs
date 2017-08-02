@@ -11,12 +11,10 @@ defmodule Terror.Repo.Migrations.CreateIndividual do
       add :report_title, :text, null: false
       add :report, :text, null: false
       add :sources, :text, null: false
-      add :nationalities, {:array, :string} null: false
-      add :identifications, :map
-      add :languages, {:array, :string}
 
       timestamps()
     end
+    create unique_index(:individuals, [:report_title])
 
   end
 end
