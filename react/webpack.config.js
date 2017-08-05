@@ -74,12 +74,12 @@ if (TARGET === 'start' || !TARGET){
       loaders: [
          {
            test: /\.scss$|.sass$/,
-           loaders: ['style', 'css', 'postcss', 'sass'],
+           loaders: ['style', 'css', 'postcss', 'sass','resolve-url'],
            include: PATHS.styles
          },
         { 
         test: /\.css$/, 
-        loader: "style-loader!css-loader" 
+        loader: "style-loader!css-loader!resolve-url" 
       },
       { 
         test: /\.png$/, 
