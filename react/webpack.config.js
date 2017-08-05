@@ -36,7 +36,12 @@ const common = {
     loaders: [
        {
          test: /.jsx?$/,
-         loaders: ['babel'],
+         enforce: 'pre',
+         loaders: ['babel','eslint-loader'],
+          overlay: {
+        errors: true,
+        warnings: true,
+      },
          include: PATHS.src
        }
     ]
@@ -63,14 +68,14 @@ if (TARGET === 'start' || !TARGET){
       loaders: [
         {
           test: /\.css$/,
-          loaders: ['style', 'css', 'postcss'],
+          loaders: ['style', 'css', 'postcss','style-loader!css-loader'],
           include: PATHS.styles
         },
          {
            test: /\.scss$|.sass$/,
            loaders: ['style', 'css', 'postcss', 'sass'],
            include: PATHS.styles
-         }
+         },
       ]
     },
     plugins: [

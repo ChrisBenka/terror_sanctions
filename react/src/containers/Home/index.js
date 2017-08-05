@@ -1,11 +1,11 @@
-
-// @flow
 import React from 'react';
-import Navbar from '../../components/Navbar'
+import Navbar from '../../components/Navbar';
 
-const Home = () =>
-  <div>
-    <Navbar></Navbar>
-  </div>;
+
+const Home = () => (
+  <div className="home-background-image">
+    <Navbar />
+  </div>
+);
 
 export default Home;
