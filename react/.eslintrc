@@ -5,8 +5,8 @@
     "flowtype"
   ],
   "extends": [
-    "airbnb",
-    "plugin:flowtype/recommended"
+    "plugin:flowtype/recommended",
+    "airbnb"
   ],
   "rules": {
     "react/jsx-filename-extension": 0,

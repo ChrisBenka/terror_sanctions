@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter, Match, Miss } from 'react-router';
 import Home from '../Home';
 import NotFound from '../../components/NotFound';
