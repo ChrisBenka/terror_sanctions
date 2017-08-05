@@ -30,6 +30,12 @@ const common = {
     new HtmlWebPackPlugin({
       title: 'react-babel-sass-starter',
       template: 'html!./src/templates/index.html'
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jquery: "jquery",
+      "window.jQuery": "jquery",
+      jQuery:"jquery"
     })
   ],
   module: {

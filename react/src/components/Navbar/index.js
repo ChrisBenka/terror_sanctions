@@ -4,7 +4,7 @@ const Navbar = () => (
   <nav className="navbar navbar-fixed-to navbar-inverse">
     <div className="container">
       <div className="navbar-header">
-        <a className="navbar-brand">Terror Sanctions App </a>
+        <a className="navbar-brand left">Terror Sanctions App </a>
       </div>
     </div>
   </nav>
