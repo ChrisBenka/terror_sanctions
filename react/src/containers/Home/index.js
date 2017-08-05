@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar';
 
 
 const Home = () => (
-  <div className="home-background-image">
+  <div className="">
     <Navbar />
   </div>
 );
