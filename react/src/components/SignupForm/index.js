@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import Input from '../Input';
 
+
 const SignupForm = () => (
   <div className="signup-form-container">
     <form className="signup-form">
@@ -18,7 +19,7 @@ const SignupForm = () => (
       </div>
       <div className="input-group sign-up-form-input-group">
         <Field
-          name="first-name"
+          name="firstName"
           type="text"
           component={Input}
           placeholder="First Name"
@@ -27,7 +28,7 @@ const SignupForm = () => (
       </div>
       <div className="input-group sign-up-form-input-group">
         <Field
-          name="last-name"
+          name="lastName"
           type="text"
           component={Input}
           placeholder="Last Name"
@@ -45,7 +46,7 @@ const SignupForm = () => (
       </div>
       <div className="input-group sign-up-form-input-group">
         <Field
-          name="confirm-password"
+          name="confirmPassword"
           type="password"
           component={Input}
           placeholder="confirm password"
@@ -59,7 +60,42 @@ const SignupForm = () => (
     </form>
   </div>
 );
+
+const validateEmail = (email) => {
+  const regexExpression = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return regexExpression.test(email);
+};
+const validate = (values) => {
+  const errors = {};
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (values.email) {
+    errors.email = '';
+  } if (!validateEmail(values.email)) {
+    errors.email = 'Please enter a valid email address';
+  }
+  if (!values.firstName) {
+    errors.firstName = 'Required';
+  } else if (values.firstName) {
+    errors.firstName = '';
+  }
+  if (!values.lastName) {
+    errors.lastName = 'Required';
+  } else if (values.lastName) {
+    errors.lastName = '';
+  }
+  if (!values.password) {
+    errors.password = 'Required';
+  } else if (values.password !== values.confirmPassword) {
+    errors.password = 'Passwords must match';
+    errors.confirmPassword = 'Passwords must match';
+  }
+
+  return errors;
+};
+
 export default reduxForm({
   form: 'signup',
+  validate,
 })(SignupForm);
 
