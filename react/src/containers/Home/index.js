@@ -1,12 +1,11 @@
 import React from 'react';
 import Navbar from '../../components/Navbar';
+import Carousel from '../../components/Carousel';
 
-const divStyle = {
-  backgroundImage: 'url(src/assets/images/home/home-background-image.jpg)',
-};
 const Home = () => (
-  <div className="home" style={divStyle}>
+  <div className="home">
     <Navbar />
+    <Carousel />
   </div>
 );
 
