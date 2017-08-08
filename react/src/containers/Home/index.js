@@ -1,11 +1,52 @@
-import React from 'react';
+// @flow
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import { logout } from '../../actions/session';
 import Navbar from '../../components/Navbar';
 
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
 
-const Home = () => (
-  <div className="">
-    <Navbar />
-  </div>
-);
+  handleLogout() {
+    this.props.logout(this.context.router);
+  }
 
-export default Home;
+  render() {
+    const { currentUser, isAuthenticated } = this.props;
+
+    return (
+      <div style={{ flex: '1' }}>
+        <Navbar />
+        <ul>
+          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/signup">Signup</Link></li>
+        </ul>
+        {isAuthenticated &&
+          <div>
+            <span>{currentUser.username}</span>
+            <button type="button" onClick={this.handleLogout}>Logout</button>
+          </div>
+        }
+      </div>
+    );
+  }
+}
+Home.contextTypes = {
+  router: PropTypes.object,
+};
+Home.propTypes = {
+  logout: PropTypes.func.isRequired,
+  currentUser: PropTypes.object.isRequired, //eslint-disable-line
+  isAuthenticated: PropTypes.bool.isRequired,
+};
+
+export default connect(
+  state => ({
+    isAuthenticated: state.session.isAuthenticated,
+    currentUser: state.session.currentUser,
+  }), { logout },
+)(Home);

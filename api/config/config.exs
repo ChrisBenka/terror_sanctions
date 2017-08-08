@@ -23,10 +23,10 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :guardian, Guardian,
-  issuer: "Sling",
+  issuer: "Terro",
   ttl: {30, :days},
   verify_issuer: true,
-  serializer: Sling.GuardianSerializer,
+  serializer: Terror.GuardianSerializer,
   secret_key: "TjHK6tfDkO5/qKD+u9tFfTIhbKe3q1Vm9fpbne6hzPoGESEh/9R7ytwJBykgF5H+"
 
 

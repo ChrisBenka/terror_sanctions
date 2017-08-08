@@ -1,2 +1,9 @@
-.home-background-image{
+.home{
+  height:100vh;
+  -webkit-background-size: auto;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+.navbar{
+  background: rgba(0,0,0,0.4)
 }

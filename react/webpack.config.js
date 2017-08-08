@@ -30,6 +30,12 @@ const common = {
     new HtmlWebPackPlugin({
       title: 'react-babel-sass-starter',
       template: 'html!./src/templates/index.html'
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jquery: "jquery",
+      "window.jQuery": "jquery",
+      jQuery:"jquery"
     })
   ],
   module: {
@@ -37,7 +43,7 @@ const common = {
        {
          test: /.jsx?$/,
          enforce: 'pre',
-         loaders: ['babel','eslint-loader'],
+         loaders: ['babel-loader','eslint-loader'],
           overlay: {
         errors: true,
         warnings: true,
@@ -68,12 +74,12 @@ if (TARGET === 'start' || !TARGET){
       loaders: [
          {
            test: /\.scss$|.sass$/,
-           loaders: ['style', 'css', 'postcss', 'sass'],
+           loaders: ['style', 'css', 'postcss', 'sass','resolve-url'],
            include: PATHS.styles
          },
         { 
         test: /\.css$/, 
-        loader: "style-loader!css-loader" 
+        loader: "style-loader!css-loader!resolve-url" 
       },
       { 
         test: /\.png$/, 
