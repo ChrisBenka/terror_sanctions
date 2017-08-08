@@ -5,19 +5,15 @@ import { Link } from 'react-router';
 import { logout } from '../../actions/session';
 import Navbar from '../../components/Navbar';
 
-type Props = {
-  logout: () => void,
-  currentUser: Object,
-  isAuthenticated: boolean,
-}
-
 class Home extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
   }
 
-  handleLogout(){this.props.logout(this.context.router)};
+  handleLogout() {
+    this.props.logout(this.context.router);
+  }
 
   render() {
     const { currentUser, isAuthenticated } = this.props;
@@ -39,15 +35,18 @@ class Home extends Component {
     );
   }
 }
-
-   Home.contextTypes = {
-    router: PropTypes.object,
-  };
+Home.contextTypes = {
+  router: PropTypes.object,
+};
+Home.propTypes = {
+  logout: PropTypes.func.isRequired,
+  currentUser: PropTypes.object.isRequired, //eslint-disable-line
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 
 export default connect(
   state => ({
     isAuthenticated: state.session.isAuthenticated,
     currentUser: state.session.currentUser,
-  }),
-  { logout }
+  }), { logout },
 )(Home);

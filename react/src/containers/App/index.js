@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { BrowserRouter, Miss } from 'react-router';
 import { connect } from 'react-redux';
 import { authenticate, unauthenticate } from '../../actions/session';
@@ -10,15 +10,8 @@ import Signup from '../Signup';
 import MatchAuthenticated from '../../components/MatchAuthenticated';
 import RedirectAuthenticated from '../../components/RedirectAuthenticated';
 
-type Props = {
-  authenticate: () => void,
-  unauthenticate: () => void,
-  isAuthenticated: boolean,
-  willAuthenticate: boolean,
-}
-
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.componentDidMount = this.componentDidMount.bind(this);
   }
@@ -50,10 +43,17 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  authenticate: PropTypes.func.isRequired,
+  unauthenticate: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  willAuthenticate: PropTypes.bool.isRequired,
+};
+
 export default connect(
   state => ({
     isAuthenticated: state.session.isAuthenticated,
     willAuthenticate: state.session.willAuthenticate,
   }),
-  { authenticate, unauthenticate }
+  { authenticate, unauthenticate },
 )(App);

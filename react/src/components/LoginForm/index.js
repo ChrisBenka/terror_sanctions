@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router';
 import { css, StyleSheet } from 'aphrodite';
@@ -13,19 +13,15 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {
-  onSubmit: () => void,
-  handleSubmit: () => void,
-  submitting: boolean,
-}
-
 class LoginForm extends Component {
-  constructor(props){
-      super(props);
-      this.handleSubmit = this.handleSubmit.bind(this)
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(data){this.props.onSubmit(data)};
+  handleSubmit(data) {
+    this.props.onSubmit(data);
+  }
 
   render() {
     const { handleSubmit, submitting } = this.props;
@@ -53,6 +49,12 @@ class LoginForm extends Component {
     );
   }
 }
+
+LoginForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired,
+};
 
 const validate = (values) => {
   const errors = {};

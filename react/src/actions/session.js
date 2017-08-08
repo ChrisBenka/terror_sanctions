@@ -1,15 +1,12 @@
 import { reset } from 'redux-form';
-import api from '../api';
-import axios from 'axios'
+import axios from 'axios';
 
 const instance = axios.create({
-  baseURL:'http://localhost:4000/api',
-  timeout:1000,
-})
+  baseURL: 'http://localhost:4000/api',
+  timeout: 1000,
+});
 
 function setCurrentUser(dispatch, response) {
-  console.log('in set current user')
-  console.log(response)
   localStorage.setItem('token', JSON.stringify(response.data.meta.token));
   dispatch({ type: 'AUTHENTICATION_SUCCESS', response });
 }
@@ -24,12 +21,11 @@ export function login(data, router) {
 }
 
 export function signup(data, router) {
-  return dispatch => instance.post('/users',data).then((response) => {
-        console.log(response)
-         setCurrentUser(dispatch, response);
-         dispatch(reset('signup'));
-         router.transitionTo('/');
-       });
+  return dispatch => instance.post('/users', data).then((response) => {
+    setCurrentUser(dispatch, response);
+    dispatch(reset('signup'));
+    router.transitionTo('/');
+  });
 }
 
 export function logout(router) {

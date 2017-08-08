@@ -5,7 +5,7 @@ import { Match, Redirect } from 'react-router';
 type Props = {
   component: any,
   pattern: string,
-  exactly?: boolean,
+  exactly?: boolean, //eslint-disable-line
   isAuthenticated: boolean,
   willAuthenticate: boolean,
 }
@@ -16,7 +16,7 @@ const MatchAuthenticated = ({
   isAuthenticated,
   willAuthenticate,
   component: Component,
-}: Props) =>
+}: Props) => (
   <Match
     exactly={exactly}
     pattern={pattern}
@@ -26,6 +26,6 @@ const MatchAuthenticated = ({
       if (!willAuthenticate && !isAuthenticated) { return <Redirect to={{ pathname: '/login' }} />; }
       return null;
     }}
-  />;
+  />);
 
 export default MatchAuthenticated;
