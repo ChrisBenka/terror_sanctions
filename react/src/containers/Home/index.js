@@ -1,14 +1,12 @@
-// @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import { logout } from '../../actions/session';
 import DashboardNavbar from '../../components/DashboardNavbar';
 import SimpleExample from '../../components/Map';
+
 class Home extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.handleLogout = this.handleLogout.bind(this);
   }
 
@@ -19,12 +17,12 @@ class Home extends Component {
   render() {
     const { currentUser, isAuthenticated } = this.props;
     return (
-      <div className='dashboard-nav'>
+      <div className="dashboard-nav align-middle">
         <DashboardNavbar />
-         {isAuthenticated &&
+        {isAuthenticated &&
           <div>
             <SimpleExample />
-            <span>{currentUser.data.username}</span><br/>
+            <span>{currentUser.data.username}</span><br />
             <button type="button" onClick={this.handleLogout}>Logout</button>
           </div>
         }
