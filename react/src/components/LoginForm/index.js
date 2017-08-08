@@ -20,7 +20,10 @@ type Props = {
 }
 
 class LoginForm extends Component {
-  props: Props
+  constructor(props){
+      super(props);
+      this.handleSubmit = this.handleSubmit.bind(this)
+  }
 
   handleSubmit(data){this.props.onSubmit(data)};
 
@@ -32,7 +35,7 @@ class LoginForm extends Component {
         className={`card ${css(styles.card)}`}
         onSubmit={handleSubmit(this.handleSubmit)}
       >
-        <h3 style={{ marginBottom: '2rem', textAlign: 'center' }}>Login to Sling</h3>
+        <h3 style={{ marginBottom: '2rem', textAlign: 'center' }}>Login to APP</h3>
         <Field name="email" type="text" component={Input} placeholder="Email" />
         <Field name="password" type="password" component={Input} placeholder="Password" />
         <button

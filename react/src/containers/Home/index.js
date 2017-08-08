@@ -12,7 +12,10 @@ type Props = {
 }
 
 class Home extends Component {
-  props: Props
+  constructor(props){
+    super(props);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
 
   handleLogout(){this.props.logout(this.context.router)};
 

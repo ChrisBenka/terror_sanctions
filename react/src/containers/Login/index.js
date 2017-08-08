@@ -10,7 +10,10 @@ type Props = {
 }
 
 class Login extends Component {
-  props: Props
+  constructor(props){
+    super(props)
+    this.handleLogin = this.handleLogin.bind(this);
+  }
 
   handleLogin(data){this.props.login(data, this.context.router)};
 

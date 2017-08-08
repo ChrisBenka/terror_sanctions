@@ -2,6 +2,11 @@ import { reset } from 'redux-form';
 import api from '../api';
 import axios from 'axios'
 
+const instance = axios.create({
+  baseURL:'http://localhost:4000/api',
+  timeout:1000,
+})
+
 function setCurrentUser(dispatch, response) {
   console.log('in set current user')
   console.log(response)
@@ -10,7 +15,7 @@ function setCurrentUser(dispatch, response) {
 }
 
 export function login(data, router) {
-  return dispatch => api.post('/sessions', data)
+  return dispatch => instance.post('/sessions', data)
     .then((response) => {
       setCurrentUser(dispatch, response);
       dispatch(reset('login'));
@@ -19,10 +24,6 @@ export function login(data, router) {
 }
 
 export function signup(data, router) {
-  const instance = axios.create({
-    baseURL:'http://localhost:4000/api',
-    timeout:1000,
-  })
   return dispatch => instance.post('/users',data).then((response) => {
         console.log(response)
          setCurrentUser(dispatch, response);
@@ -32,7 +33,7 @@ export function signup(data, router) {
 }
 
 export function logout(router) {
-  return dispatch => api.delete('/sessions')
+  return dispatch => instance.delete('/sessions')
     .then(() => {
       localStorage.removeItem('token');
       dispatch({ type: 'LOGOUT' });
@@ -43,7 +44,7 @@ export function logout(router) {
 export function authenticate() {
   return (dispatch) => {
     dispatch({ type: 'AUTHENTICATION_REQUEST' });
-    return api.post('/sessions/refresh')
+    return instance.post('/sessions/refresh')
       .then((response) => {
         setCurrentUser(dispatch, response);
       })

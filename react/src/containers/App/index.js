@@ -18,6 +18,10 @@ type Props = {
 }
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
   componentDidMount() {
     const token = localStorage.getItem('token');
 
@@ -28,7 +32,6 @@ class App extends Component {
     }
   }
 
-  props: Props
 
   render() {
     const { isAuthenticated, willAuthenticate } = this.props;
