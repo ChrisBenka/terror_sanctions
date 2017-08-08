@@ -2,28 +2,26 @@
 import React from 'react';
 
 type Props = {
-  input: Object,  /* eslint-disable */
-  label?: string, /* eslint-disable */
-  type?: string,  /* eslint-disable */
-  meta: Object, 
+  input: Object,
+  label?: string,
+  type?: string,
   placeholder?: string,
   style?: Object,
-  inputStyle?: Object,
-  className?: string,
+  meta: Object,
 }
 
-const Input = ({ input, label, type, placeholder, meta, style, inputStyle, className }: Props) =>
-  <div style={{style }}> 
+const Input = ({ input, label, type, placeholder, style, meta }: Props) =>
+  <div style={{ marginBottom: '1rem' }}>
     {label && <label htmlFor={input.name}>{label}</label>}
     <input
       {...input}
       type={type}
       placeholder={placeholder}
-      style={{inputStyle }}
-      className={className || 'form-control'}
+      className="form-control"
+      style={style && style}
     />
     {meta.touched && meta.error &&
-      <div style={{ fontSize: '85%', color: '#cc5454' }}>{meta.error}</div>
+      <div style={{ fontSize: '85%', color: 'rgb(255,59,48)' }}>{meta.error}</div>
     }
   </div>;
 

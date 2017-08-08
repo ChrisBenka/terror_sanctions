@@ -1,11 +1,30 @@
-import React from 'react';
+// @flow
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { login } from '../../actions/session';
+import LoginForm from '../../components/LoginForm';
 import Navbar from '../../components/Navbar';
 
-const Login = () => (
-  <div className="">
-    <Navbar />
-    <h1> Login page </h1>
-  </div>
-);
+type Props = {
+  login: () => void,
+}
 
-export default Login;
+class Login extends Component {
+  props: Props
+
+  handleLogin(data){this.props.login(data, this.context.router)};
+
+  render() {
+    return (
+      <div style={{ flex: '1' }}>
+        <Navbar />
+        <LoginForm onSubmit={this.handleLogin} />
+      </div>
+    );
+  }
+}
+Login.contextTypes = {
+  router: PropTypes.object,
+}
+
+export default connect(null, { login })(Login);

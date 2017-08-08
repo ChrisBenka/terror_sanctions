@@ -43,7 +43,7 @@ const common = {
        {
          test: /.jsx?$/,
          enforce: 'pre',
-         loaders: ['babel','eslint-loader'],
+         loaders: ['babel-loader','eslint-loader'],
           overlay: {
         errors: true,
         warnings: true,
