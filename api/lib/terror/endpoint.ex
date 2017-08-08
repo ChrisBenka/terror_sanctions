@@ -35,6 +35,7 @@ defmodule Terror.Endpoint do
     store: :cookie,
     key: "_terror_key",
     signing_salt: "hx/jkpZh"
-
+  
+  plug CORSPlug
   plug Terror.Router
 end
