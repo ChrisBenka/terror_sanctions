@@ -3,11 +3,12 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { logout } from '../../actions/session';
-import Navbar from '../../components/Navbar';
+import DashboardNavbar from '../../components/DashboardNavbar';
 
 class Home extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.handleLogout = this.handleLogout.bind(this);
   }
 
@@ -17,17 +18,12 @@ class Home extends Component {
 
   render() {
     const { currentUser, isAuthenticated } = this.props;
-
     return (
-      <div style={{ flex: '1' }}>
-        <Navbar />
-        <ul>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/signup">Signup</Link></li>
-        </ul>
-        {isAuthenticated &&
+      <div className='dashboard-nav'>
+        <DashboardNavbar />
+         {isAuthenticated &&
           <div>
-            <span>{currentUser.username}</span>
+            <span>{currentUser.data.username}</span><br/>
             <button type="button" onClick={this.handleLogout}>Logout</button>
           </div>
         }

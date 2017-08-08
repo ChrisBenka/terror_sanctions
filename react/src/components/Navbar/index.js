@@ -19,7 +19,7 @@ const Navbar = () => (
           </li>
           <li className="active">
             <button type="button" className="btn btn-secondary btn-background align-middle">
-              <Link className="router-link" to="/sign-up">
+              <Link className="router-link" to="/signup">
                 Sign up
               </Link>
             </button>
