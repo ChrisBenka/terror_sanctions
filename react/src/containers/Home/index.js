@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { logout } from '../../actions/session';
 import DashboardNavbar from '../../components/DashboardNavbar';
-
+import SimpleExample from '../../components/Map';
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +23,7 @@ class Home extends Component {
         <DashboardNavbar />
          {isAuthenticated &&
           <div>
+            <SimpleExample />
             <span>{currentUser.data.username}</span><br/>
             <button type="button" onClick={this.handleLogout}>Logout</button>
           </div>
