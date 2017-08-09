@@ -1,9 +1,7 @@
-// @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import { logout } from '../../actions/session';
-import Navbar from '../../components/Navbar';
+import SimpleExample from '../../components/Map';
 
 class Home extends Component {
   constructor(props) {
@@ -16,19 +14,12 @@ class Home extends Component {
   }
 
   render() {
-    const { currentUser, isAuthenticated } = this.props;
-
+    const { isAuthenticated } = this.props;
     return (
-      <div style={{ flex: '1' }}>
-        <Navbar />
-        <ul>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/signup">Signup</Link></li>
-        </ul>
+      <div className="container align-middle home">
         {isAuthenticated &&
           <div>
-            <span>{currentUser.username}</span>
-            <button type="button" onClick={this.handleLogout}>Logout</button>
+            <SimpleExample />
           </div>
         }
       </div>

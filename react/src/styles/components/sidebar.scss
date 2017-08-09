@@ -1,0 +1,13 @@
+.menu{
+    background-color: #261c25;
+    height: 100vh;
+    display: 'flex' !important;
+    flex-direction:'column' !important;
+}
+.menu-item{
+    color:white;
+    background-color:#514951;
+}
+.pt-menu-item::before{
+    color:white;
+}

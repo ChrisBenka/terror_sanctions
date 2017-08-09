@@ -9,6 +9,8 @@ import Login from '../Login';
 import Signup from '../Signup';
 import MatchAuthenticated from '../../components/MatchAuthenticated';
 import RedirectAuthenticated from '../../components/RedirectAuthenticated';
+import Sidebar from '../../components/Sidebar';
+import DashboardNavbar from '../DashboardNavbar';
 
 class App extends Component {
   constructor(props) {
@@ -32,11 +34,19 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <div style={{ display: 'flex', flex: '1' }}>
-          <MatchAuthenticated exactly pattern="/" component={Home} {...authProps} />
-          <RedirectAuthenticated pattern="/login" component={Login} {...authProps} />
-          <RedirectAuthenticated pattern="/signup" component={Signup} {...authProps} />
-          <Miss component={NotFound} />
+        <div>
+          {isAuthenticated &&
+            <DashboardNavbar {...authProps} />
+          }
+          <div style={{ display: 'flex', flex: '1' }}>
+            {isAuthenticated &&
+              <Sidebar />
+            }
+            <MatchAuthenticated exactly pattern="/" component={Home} {...authProps} />
+            <RedirectAuthenticated pattern="/login" component={Login} {...authProps} />
+            <RedirectAuthenticated pattern="/signup" component={Signup} {...authProps} />
+            <Miss component={NotFound} />
+          </div>
         </div>
       </BrowserRouter>
     );
