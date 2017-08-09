@@ -21,7 +21,7 @@ class Home extends Component {
         <DashboardNavbar />
         {isAuthenticated &&
           <div>
-            <SimpleExample />
+            <SimpleExample className="map" />
             <span>{currentUser.data.username}</span><br />
             <button type="button" onClick={this.handleLogout}>Logout</button>
           </div>
