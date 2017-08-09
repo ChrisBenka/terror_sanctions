@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session';
-import DashboardNavbar from '../../components/DashboardNavbar';
 import SimpleExample from '../../components/Map';
 
 class Home extends Component {
@@ -15,15 +14,12 @@ class Home extends Component {
   }
 
   render() {
-    const { currentUser, isAuthenticated } = this.props;
+    const { isAuthenticated } = this.props;
     return (
-      <div className="dashboard-nav align-middle">
-        <DashboardNavbar />
+      <div className="container align-middle home">
         {isAuthenticated &&
           <div>
-            <SimpleExample className="map" />
-            <span>{currentUser.data.username}</span><br />
-            <button type="button" onClick={this.handleLogout}>Logout</button>
+            <SimpleExample />
           </div>
         }
       </div>
