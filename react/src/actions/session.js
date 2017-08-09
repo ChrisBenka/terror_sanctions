@@ -18,7 +18,7 @@ export function login(data, router) {
       dispatch(reset('login'));
       router.transitionTo('/');
     }).catch(() => {
-      //  dispatch alert for bad login
+      dispatch({ type: 'SHOW_ALERT', message: 'Invalid email or password' });
     });
 }
 
@@ -27,6 +27,8 @@ export function signup(data, router) {
     setCurrentUser(dispatch, response);
     dispatch(reset('signup'));
     router.transitionTo('/');
+  }).catch(() => {
+    dispatch({ type: 'SHOW_ALERT', message: 'That username or email has alreadly been taken' });
   });
 }
 
