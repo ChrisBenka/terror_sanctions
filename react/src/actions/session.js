@@ -17,8 +17,8 @@ export function login(data, router) {
       setCurrentUser(dispatch, response);
       dispatch(reset('login'));
       router.transitionTo('/');
-    }).catch((e) => {
-      console.log(e);
+    }).catch(() => {
+      //  dispatch alert for bad login
     });
 }
 
