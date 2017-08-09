@@ -10,7 +10,7 @@ import Signup from '../Signup';
 import MatchAuthenticated from '../../components/MatchAuthenticated';
 import RedirectAuthenticated from '../../components/RedirectAuthenticated';
 import Sidebar from '../../components/Sidebar';
-import DashboardNavbar from '../../components/DashboardNavbar';
+import DashboardNavbar from '../DashboardNavbar';
 
 class App extends Component {
   constructor(props) {

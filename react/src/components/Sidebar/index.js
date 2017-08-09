@@ -24,7 +24,7 @@ class MenuExample extends React.Component {
           text="New link"
         />
         <MenuDivider />
-        <MenuItem className="menu-item" text="Settings..." iconName="cog" />
+        <MenuItem className="menu-item" text="Individual Reports" iconName="cog" />
       </Menu>
     );
   }
