@@ -55,4 +55,8 @@ export function authenticate() {
   };
 }
 
+export function route(link,router) {
+  router.transitionTo(link);
+}
+
 export const unauthenticate = () => ({ type: 'AUTHENTICATION_FAILURE' });
