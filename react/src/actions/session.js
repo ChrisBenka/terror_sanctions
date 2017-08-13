@@ -55,7 +55,7 @@ export function authenticate() {
   };
 }
 
-export function route(link,router) {
+export function route(link, router) {
   router.transitionTo(link);
 }
 

@@ -1,44 +1,32 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import ReportPreview from '../../components/ReportPreview';
-class Feed extends Component {
-  constructor(props) {
-    super(props);
-  }
-  beautify(path){
-    path = path.replace(/-/g,' ').replace('/','');
-    return this.capatilizeFirstLetters(path);
-  }
-  capatilizeFirstLetters(path){
-     return path.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-  }
-  render () {
-    const { location }  = this.props; 
-    console.log(location);
+
+const capatilizeFirstLetters = (path) => {
+  return path.replace(/\w\S*/g, txt => { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+};
+
+const beautify = (path) => {
+  const pageTitle = path.replace(/-/g, ' ').replace('/', '');
+  return capatilizeFirstLetters(pageTitle);
+};
+
+class Feed extends Component { //eslint-disable-line
+  render() {
+    const { location } = this.props;
     return (
       <div className="container">
-        <h1 className="text-center">{this.beautify(location.pathname)}</h1>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
-        <ReportPreview></ReportPreview>
+        <h1 className="text-center">{beautify(location.pathname)}</h1>
+        <ReportPreview />
+        <ReportPreview />
+        <ReportPreview />
+        <ReportPreview />
       </div>
     );
   }
 }
+
+Feed.propTypes = {
+  location: PropTypes.object.isRequired, //eslint-disable-line
+};
+
 export default Feed;
