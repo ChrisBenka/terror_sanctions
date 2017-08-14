@@ -11,6 +11,8 @@ import MatchAuthenticated from '../../components/MatchAuthenticated';
 import RedirectAuthenticated from '../../components/RedirectAuthenticated';
 import Sidebar from '../../components/Sidebar';
 import DashboardNavbar from '../DashboardNavbar';
+import Alert from '../Alert';
+import Feed from '../Feed';
 
 class App extends Component {
   constructor(props) {
@@ -34,20 +36,25 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <div>
-          {isAuthenticated &&
-            <DashboardNavbar {...authProps} />
-          }
-          <div style={{ display: 'flex', flex: '1' }}>
+        {({ location }) => (
+          <div>
             {isAuthenticated &&
-              <Sidebar />
+              <DashboardNavbar {...authProps} />
             }
-            <MatchAuthenticated exactly pattern="/" component={Home} {...authProps} />
-            <RedirectAuthenticated pattern="/login" component={Login} {...authProps} />
-            <RedirectAuthenticated pattern="/signup" component={Signup} {...authProps} />
-            <Miss component={NotFound} />
+            <div style={{ display: 'flex', flex: '1' }}>
+              {isAuthenticated &&
+                <Sidebar />
+              }
+              <Alert pathname={location.pathname} />
+              <MatchAuthenticated exactly pattern="/" component={Home} {...authProps} />
+              <MatchAuthenticated exactly pattern="/individual-reports" component={Feed} location={location} {...authProps} />
+              <MatchAuthenticated exactly pattern="/terror-group-reports" component={Feed} location={location} {...authProps} />
+              <RedirectAuthenticated pattern="/login" component={Login} {...authProps} />
+              <RedirectAuthenticated pattern="/signup" component={Signup} {...authProps} />
+              <Miss component={NotFound} />
+            </div>
           </div>
-        </div>
+        )}
       </BrowserRouter>
     );
   }

@@ -21,6 +21,7 @@
   },
   "homepage": "",
   "devDependencies": {
+    "@blueprintjs/docs": "^1.1.1",
     "autoprefixer": "^6.3.6",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
@@ -32,6 +33,7 @@
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.5.0",
+    "blu": "^0.1.4",
     "clean-webpack-plugin": "^0.1.8",
     "css-loader": "^0.23.1",
     "eslint": "^4.4.1",
@@ -60,6 +62,7 @@
   },
   "dependencies": {
     "@blueprintjs/core": "^1.24.0",
+    "@blueprintjs/table": "^1.21.0",
     "aphrodite": "^1.2.3",
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
@@ -79,6 +82,7 @@
     "react-redux": "^5.0.5",
     "react-router": "^4.0.0-alpha.5",
     "react-router-dom": "^4.1.2",
+    "react-table": "^6.5.3",
     "redux": "^3.7.2",
     "redux-form": "^7.0.3",
     "redux-thunk": "^2.2.0"

@@ -1,11 +1,12 @@
-
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
 import session from './session';
+import alert from './alert';
 
 const appReducer = combineReducers({
   form,
   session,
+  alert,
 });
 
 export default function (state, action) {
