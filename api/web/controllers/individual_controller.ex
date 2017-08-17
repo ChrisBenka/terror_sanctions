@@ -4,7 +4,7 @@ defmodule Terror.IndividualController do
   alias Terror.Individual
 
   def index(conn, _params) do
-    individuals = Repo.all(Individual)
+    individuals = Repo.preload(Repo.all(Individual),[:individualnationalities,:individuallanguages,:individualidentifications,])
     render(conn, "index.json", individuals: individuals)
   end
 
