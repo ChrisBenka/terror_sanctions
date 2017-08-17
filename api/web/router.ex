@@ -28,6 +28,6 @@ defmodule Terror.Router do
     delete "/sessions", SessionController, :delete
     post "/sessions/refresh", SessionController, :refresh
     resources "/users", UserController, only: [:create]
-    resources "/individuals",IndividualController
+    resources "/individuals", IndividualController
   end
 end

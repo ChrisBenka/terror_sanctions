@@ -2,6 +2,8 @@ defmodule Terror.IndividualNationality do
   use Terror.Web, :model
   
   @primary_key false
+    @derive {Poison.Encoder, only: [:nationality]}
+
   schema "individualnationalities" do
     field :nationality, :string, primary_key: true
     belongs_to :individual, Terror.Individual, primary_key: true
