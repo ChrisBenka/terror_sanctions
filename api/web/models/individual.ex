@@ -10,6 +10,7 @@ defmodule Terror.Individual do
     field :report_title, :string
     field :report, :string
     field :sources, :string
+    field :geo_loc, Geo.Point
     has_many :individualnationalities, Terror.IndividualNationality
     has_many :individuallanguages, Terror.IndividualLanguage
     has_many :individualidentifications, Terror.IndividualIdentification
@@ -26,4 +27,5 @@ defmodule Terror.Individual do
     |> unique_constraint(:report_title)
 
   end
+  
 end

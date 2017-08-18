@@ -25,7 +25,6 @@ defmodule Terror.IndividualController do
   end
 
   def show(conn, %{"id" => id}) do
-    #individual = Repo.get!(Individual, id)
     individual = Repo.preload(Repo.get!(Individual,id),[:individualnationalities,:individuallanguages,:individualidentifications,])
     IO.puts(inspect(individual.individualidentifications))
     render(conn, "show.json", individual: individual)
