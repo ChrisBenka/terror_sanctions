@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/session';
 import LoginForm from '../../components/LoginForm';
 import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
 
 class Login extends Component {
   constructor(props) {

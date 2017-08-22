@@ -43,7 +43,7 @@ class App extends Component {
             }
             <div style={{ display: 'flex', flex: '1' }}>
               {isAuthenticated &&
-                <Sidebar router={router}/>
+                <Sidebar router={router} />
               }
               <Alert pathname={location.pathname} />
               <MatchAuthenticated exactly pattern="/" component={Home} {...authProps} />

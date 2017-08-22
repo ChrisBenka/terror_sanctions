@@ -4,8 +4,8 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { retriveAllIndividuals } from '../../actions/individuals';
 
-const capatilizeFirstLetters = (path) => {
-  return path.replace(/\w\S*/g, txt => {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+const capatilizeFirstLetters = (path) => {  //eslint-disable-line
+  return path.replace(/\w\S*/g, txt => { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });  //eslint-disable-line
 };
 
 const beautify = (path) => {
@@ -14,21 +14,21 @@ const beautify = (path) => {
 };
 
 const columns = [{
-  Header:'Name',
-  accessor:'name',
+  Header: 'Name',
+  accessor: 'name',
 },
 {
-  Header:'Date of Birth',
-  accessor:'date_of_birth'
+  Header: 'Date of Birth',
+  accessor: 'date_of_birth',
 },
 {
   Header: 'Location',
-  accessor:'location',
-}
+  accessor: 'location',
+},
 ];
 
 class Feed extends Component { //eslint-disable-line
-  constructor(props){
+  constructor(props) {
     super(props);
     this.props.retriveAllIndividuals();
   }
@@ -52,7 +52,8 @@ class Feed extends Component { //eslint-disable-line
 
 Feed.propTypes = {
   location: PropTypes.object.isRequired, //eslint-disable-line
-  individualReports: PropTypes.array.isRequired,
+  individualReports: PropTypes.array.isRequired,  //eslint-disable-line
+  retriveAllIndividuals: PropTypes.func.isRequired,
 };
 
 export default connect(
