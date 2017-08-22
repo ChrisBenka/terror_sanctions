@@ -36,14 +36,14 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        {({ location }) => (
+        {({ router, location }) => (
           <div>
             {isAuthenticated &&
               <DashboardNavbar {...authProps} />
             }
             <div style={{ display: 'flex', flex: '1' }}>
               {isAuthenticated &&
-                <Sidebar />
+                <Sidebar router={router}/>
               }
               <Alert pathname={location.pathname} />
               <MatchAuthenticated exactly pattern="/" component={Home} {...authProps} />
