@@ -13,6 +13,7 @@ import Sidebar from '../../components/Sidebar';
 import DashboardNavbar from '../DashboardNavbar';
 import Alert from '../Alert';
 import Feed from '../Feed';
+import AddIndividual from '../AddIndividual';
 
 class App extends Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class App extends Component {
               <Alert pathname={location.pathname} />
               <MatchAuthenticated exactly pattern="/" component={Home} {...authProps} />
               <MatchAuthenticated exactly pattern="/individual-reports" component={Feed} location={location} {...authProps} />
+              <MatchAuthenticated exactly pattern="/create-individual-report" component={AddIndividual} location={location} {...authProps} />
               <MatchAuthenticated exactly pattern="/terror-group-reports" component={Feed} location={location} {...authProps} />
               <RedirectAuthenticated pattern="/login" component={Login} {...authProps} />
               <RedirectAuthenticated pattern="/signup" component={Signup} {...authProps} />
