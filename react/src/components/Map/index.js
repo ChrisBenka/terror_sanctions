@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
-class SimpleExample extends Component {
+class GlobalMap extends Component {
   constructor() {
     super();
     this.state = {
@@ -21,11 +21,11 @@ class SimpleExample extends Component {
         />
         <Marker position={position}>
           <Popup>
-            <span>A pretty CSS3 popup. <br /> Easily customizable.</span>
+            <span>Christopher Benka <br /> Report Link here.</span>
           </Popup>
         </Marker>
       </Map>
     );
   }
 }
-export default SimpleExample;
+export default GlobalMap;

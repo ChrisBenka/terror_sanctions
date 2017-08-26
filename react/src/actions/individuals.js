@@ -14,3 +14,13 @@ export function retriveAllIndividuals() {
       dispatch({ type: 'SHOW_ALERT', message: 'Unable to retrieve sanctioned individuals' });
     });
 }
+
+export function addIndividual(data) {
+  return dispatch => instance.post('/individuals', data)
+    .then(() => {
+      dispatch({ type: 'SHOW_ALERT', message: 'Individual Successfully Added' });
+    })
+    .catch(() => {
+      dispatch({ type: 'SHOW_ALERT', message: 'Problem creating individual' });
+    });
+}

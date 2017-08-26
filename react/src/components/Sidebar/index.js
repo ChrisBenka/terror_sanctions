@@ -7,9 +7,9 @@ class MenuExample extends React.Component { //eslint-disable-line
     return (
       <Menu className="menu">
         <div>
-          <MenuItem className="menu-item pt-icon-person" text="Individuals">
-            <MenuItem className=" pt-icon-edit " text="Create Individual" onClick={() => { router.transitionTo('/create-individual-report'); }} />
-            <MenuItem className=" pt-icon-numbered-list" text="Individual Reports" onClick={() => { router.transitionTo('/individual-reports'); }} />
+          <MenuItem className="menu-item men-item pt-icon-person" text="Individuals">
+            <MenuItem className=" men-item pt-icon-edit " text="Create Individual" onClick={() => { router.transitionTo('/create-individual-report'); }} />
+            <MenuItem className=" men-item  pt-icon-numbered-list" text="Individual Reports" onClick={() => { router.transitionTo('/individual-reports'); }} />
           </MenuItem>
         </div>
         <div>
