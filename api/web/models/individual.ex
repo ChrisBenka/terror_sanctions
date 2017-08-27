@@ -25,7 +25,6 @@ defmodule Terror.Individual do
     |> cast(params, [:name, :location, :date_of_birth, :date_of_death, :place_of_birth, :report_title, :report, :sources, :individualnationalities, :individualidentifications, :langindividuallanguagesuages])
     |> validate_required([:name, :location, :date_of_birth, :report_title, :report, :sources, :individualnationalities, :individuallanguages, :individualidentifications])
     |> unique_constraint(:report_title)
-    |> put_geo_location()
 
   end
   defp put_geo_location(changeset) do

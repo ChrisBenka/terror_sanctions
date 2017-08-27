@@ -41,7 +41,9 @@ defmodule Terror.Mixfile do
      {:cors_plug, "~> 1.1"},
      {:geo, "~> 2.0"},
      {:geo_postgis, "~> 1.0"},
-      {:httpoison, "~> 0.13"},]
+     {:httpoison, "~> 0.13"},
+     {:apex, "~>1.0.0"}]
+
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
