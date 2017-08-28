@@ -8,34 +8,21 @@ defmodule Terror.IndividualController do
     render(conn, "index.json", individuals: individuals)
   end
 
-  def create(conn, _params) do
-    IO.puts(_params["location"])
-    HTTPoison.start
-    case HTTPoison.get(
-      "https://maps.googleapis.com/maps/api/geocode/json",
-      [],
-      params: %{address: "953 S. Elm Street, Palatine,IL",
-      key: "AIzaSyCtHMUj7UBHBI53TIlzNqa4JgninhLrzbk"}) do
-        {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-          json = Poison.decode!(body)
-          json = Enum.at(json["results"],0)
-          json = json["geometry"]["location"]
-          IO.inspect(json["lat"])
-          IO.inspect(json["lng"])
-      end
-    #changeset = Individual.changeset(%Individual{}, individual_params)
+   def create(conn, %{"individual" => individual_params}) do
+    IO.inspect(individual_params)
+    changeset = Individual.changeset(%Individual{}, individual_params)
 
-    #case Repo.insert(changeset) do
-     # {:ok, individual} ->
-      #  conn
-       # |> put_status(:created)
-        #|> put_resp_header("location", individual_path(conn, :show, individual))
-        #|> render("show.json", individual: individual)
-      #{:error, changeset} ->
-       # conn
-        #|> put_status(:unprocessable_entity)
-        #|> render(Terror.ChangesetView, "error.json", changeset: changeset)
-    #end
+    case Repo.insert(changeset) do
+      {:ok, individual} ->
+        conn
+        |> put_status(:created)
+        |> put_resp_header("location", individual_path(conn, :show, individual))
+        |> render("show.json", individual: individual)
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render(Terror.ChangesetView, "error.json", changeset: changeset)
+    end
   end
 
   def show(conn, %{"id" => id}) do

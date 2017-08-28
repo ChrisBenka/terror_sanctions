@@ -34,3 +34,4 @@ defmodule Terror.Individual do
     HTTPoison.get!("https://maps.googleapis.com/maps/api/geocode/json",[],params: %{address: location,key: "AIzaSyCtHMUj7UBHBI53TIlzNqa4JgninhLrzbk"})
   end 
 end
+
