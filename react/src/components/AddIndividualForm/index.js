@@ -18,16 +18,16 @@ class AddIndividualForm extends Component {
       <div className="add-Indiv-form-container">
         <p className="add-Indiv-form-header">Add Individual</p>
         <form className="add-Indiv-form-body white-theme" onSubmit={handleSubmit(this.handleSubmit)}>
-          <Field name="fullName" type="text" component={Input} placeholder="Full Name" />
+          <Field name="name" type="text" component={Input} placeholder="Full Name" />
           <Field name="location" type="text" component={Input} placeholder="Current Location" />
-          <Field name="dateOfBirth" type="date" component={Input} />
-          <Field name="dateOfDeath" type="date" component={Input} />
-          <Field name="placeOfBirth" type="text" component={Input} placeholder="Place of Birth" />
-          <Field name="reportTitle" type="text" component={Input} placeholder="Report Title" />
+          <Field name="date_of_birth" type="date" component={Input} />
+          <Field name="date_of_death" type="date" component={Input} />
+          <Field name="place_of_birth" type="text" component={Input} placeholder="Place of Birth" />
+          <Field name="report_title" type="text" component={Input} placeholder="Report Title" />
           <Field name="report" type="textarea" component={Input} placeholder="Report" />
           <Field name="sources" type="textarea" component={Input} placeholder="Sources" />
-          <Field name="individualNationalities" type="text" component={Input} placeholder="Individual Nationalities" />
-          <Field name="individualIdentifications" type="text" component={Input} placeholder="Individual Identifications" />
+          <Field name="individualnationalities" type="text" component={Input} placeholder="Individual Nationalities" />
+          <Field name="individualidentifications" type="text" component={Input} placeholder="Individual Identifications" />
           <button
             type="submit"
             disabled={submitting}
