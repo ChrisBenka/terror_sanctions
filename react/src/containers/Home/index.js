@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session';
-import SimpleExample from '../../components/Map';
+import SimpleExample from '../Map';
 
 class Home extends Component {
   constructor(props) {

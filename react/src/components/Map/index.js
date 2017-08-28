@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
 class GlobalMap extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       lat: 51.505,
       lng: -0.09,
@@ -12,7 +12,10 @@ class GlobalMap extends Component {
   }
 
   render() {
-    const position = [this.state.lat, this.state.lng];
+    const { individuals } = this.props
+    if(individuals.length>0){
+      console.log(individuals[0].geo_loc.coordinates[0])
+      const position = [individuals[0].geo_loc.coordinates[0],(individuals[0].geo_loc.coordinates[1] * -1)]
     return (
       <Map center={position} zoom={this.state.zoom}>
         <TileLayer
@@ -27,5 +30,14 @@ class GlobalMap extends Component {
       </Map>
     );
   }
+    return <div> loading... </div>
+  }
 }
 export default GlobalMap;
+
+
+/*
+  Create list of markers 
+  render all of htose markerss
+
+*/
