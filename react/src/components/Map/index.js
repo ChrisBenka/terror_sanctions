@@ -10,14 +10,14 @@ class GlobalMap extends Component {
       zoom: 13,
     };
   }
-
+//
   render() {
     const { individuals } = this.props
     if(individuals.length>0){
       console.log(individuals[0].geo_loc.coordinates[0])
       const position = [individuals[0].geo_loc.coordinates[0],(individuals[0].geo_loc.coordinates[1] * -1)]
     return (
-      <Map center={position} zoom={this.state.zoom}>
+      <Map center={position} zoom={6}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
