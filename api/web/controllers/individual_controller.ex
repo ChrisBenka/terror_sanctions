@@ -32,22 +32,6 @@ defmodule Terror.IndividualController do
        |> put_status(:unprocessable_entity)
        |> render(Terror.ChangesetView, "error.json", changeset: changeset)
     end
-
-
-
-
-
-    # case Repo.insert(changeset) do
-    #   {:ok, individual} ->
-    #     conn
-    #     |> put_status(:created)
-    #     |> put_resp_header("location", individual_path(conn, :show, individual))
-    #     |> render("show.json", individual: individual)
-    #   {:error, changeset} ->
-    #     conn
-    #     |> put_status(:unprocessable_entity)
-    #     |> render(Terror.ChangesetView, "error.json", changeset: changeset)
-    # end
   end
   
   defp get_geo_loc(conn,individual_params) do
