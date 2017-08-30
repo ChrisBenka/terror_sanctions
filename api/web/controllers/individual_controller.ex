@@ -16,13 +16,19 @@ defmodule Terror.IndividualController do
     sources: individual_params["sources"], geo_loc: geo_location}    
     changeset = Individual.changeset(%Individual{},individual)
     nationalities = String.split(individual_params["individualnationalities"],",")
+    identifications = String.split(individual_params["individualidentifications"],";")
     case Repo.insert(changeset) do
       {:ok, individual} ->
         individual = Repo.preload(Repo.get(Individual,individual.id),[:individualnationalities,:individuallanguages,:individualidentifications,] )
         for nationality <- nationalities, do: build_individual_nationality(nationality,individual.id)
+        for identification <- identifications, do: build_individaul_identifications(identification,individual.id)
         conn
         |> put_status(:created)
         > render("show.json", individual: individual)
+      {:error, changeset} ->
+       conn
+       |> put_status(:unprocessable_entity)
+       |> render(Terror.ChangesetView, "error.json", changeset: changeset)
     end
 
 
@@ -61,8 +67,13 @@ defmodule Terror.IndividualController do
 
   defp build_individual_nationality(nationality,individual_id) do
     nationality_changeset = Terror.IndividualNationality.changeset(%Terror.IndividualNationality{},%{individual_id: individual_id, nationality: nationality})
-    IO.inspect(nationality_changeset)
     Repo.insert(nationality_changeset)
+  end
+  defp build_individaul_identifications(id,individual_id) do
+    id = String.split(id,",")
+    identification_changeset = Terror.IndividualIdentification.changeset(%Terror.IndividualIdentification{},%{nation: Enum.at(id,0),
+    type: Enum.at(id,1), identification: Enum.at(id,2), individual_id: individual_id})
+    Repo.insert(identification_changeset)
   end
 
   def show(conn, %{"id" => id}) do

@@ -16,7 +16,7 @@ defmodule Terror.IndividualIdentification do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:nation, :type, :identification])
+    |> cast(params, [:nation, :type, :identification, :individual_id])
     |> validate_required([:nation, :type, :identification,:individual_id])
   end
 end
