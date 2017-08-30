@@ -9,12 +9,25 @@ defmodule Terror.IndividualController do
   end
 
   def create(conn,individual_params) do
-    get_geo_loc(conn,individual_params)
-    test =  %{name: individual_params["name"],location: individual_params["location"],
+    geo_location = get_geo_loc(conn,individual_params)
+    individual =  %{name: individual_params["name"],location: individual_params["location"],
     date_of_birth: individual_params["date_of_birth"], place_of_birth: individual_params[""],
     report_title: individual_params["report_title"], report: individual_params["report"],
-    sources: individual_params["sources"]}    
-    # changeset = Individual.changeset(%Individual{}, individual_params)
+    sources: individual_params["sources"], geo_loc: geo_location}    
+    changeset = Individual.changeset(%Individual{},individual)
+    nationalities = String.split(individual_params["individualnationalities"],",")
+    case Repo.insert(changeset) do
+      {:ok, individual} ->
+        individual = Repo.preload(Repo.get(Individual,individual.id),[:individualnationalities,:individuallanguages,:individualidentifications,] )
+        for nationality <- nationalities, do: build_individual_nationality(nationality,individual.id)
+        conn
+        |> put_status(:created)
+        > render("show.json", individual: individual)
+    end
+
+
+
+
 
     # case Repo.insert(changeset) do
     #   {:ok, individual} ->
@@ -28,8 +41,8 @@ defmodule Terror.IndividualController do
     #     |> render(Terror.ChangesetView, "error.json", changeset: changeset)
     # end
   end
+  
   defp get_geo_loc(conn,individual_params) do
-    IO.inspect(individual_params)
     HTTPoison.start
     case HTTPoison.get("https://maps.googleapis.com/maps/api/geocode/json",[],
     params: %{address: individual_params["location"],key: "AIzaSyCtHMUj7UBHBI53TIlzNqa4JgninhLrzbk"}) do
@@ -38,7 +51,7 @@ defmodule Terror.IndividualController do
         json = Enum.at(json["results"],0)
         json = json["geometry"]["location"]
         geom = %Geo.Point{ coordinates: {json["lat"], json["lng"]}}
-        IO.inspect(geom)
+        geom
       {:error, changset} ->
         conn
         |> put_status(:unprocessable_entity)
@@ -46,9 +59,14 @@ defmodule Terror.IndividualController do
     end
   end
 
+  defp build_individual_nationality(nationality,individual_id) do
+    nationality_changeset = Terror.IndividualNationality.changeset(%Terror.IndividualNationality{},%{individual_id: individual_id, nationality: nationality})
+    IO.inspect(nationality_changeset)
+    Repo.insert(nationality_changeset)
+  end
+
   def show(conn, %{"id" => id}) do
     individual = Repo.preload(Repo.get!(Individual,id),[:individualnationalities,:individuallanguages,:individualidentifications,])
-    IO.puts(inspect(individual.individualidentifications))
     render(conn, "show.json", individual: individual)
   end
 

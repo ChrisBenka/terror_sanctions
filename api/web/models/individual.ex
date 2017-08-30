@@ -22,7 +22,7 @@ defmodule Terror.Individual do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :location, :date_of_birth, :date_of_death, :place_of_birth, :report_title, :report, :sources])
+    |> cast(params, [:name, :location, :date_of_birth, :date_of_death, :place_of_birth, :report_title, :report, :sources, :geo_loc])
     |> validate_required([:name, :location, :date_of_birth, :report_title, :report, :sources, :geo_loc])
     |> unique_constraint(:report_title)
   end

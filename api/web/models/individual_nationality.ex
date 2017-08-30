@@ -16,7 +16,7 @@ defmodule Terror.IndividualNationality do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:nationality])
+    |> cast(params, [:nationality,:individual_id])
     |> validate_required([:nationality,:individual_id])
   end
 end
