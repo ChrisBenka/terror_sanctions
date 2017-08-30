@@ -11,17 +11,19 @@ defmodule Terror.IndividualController do
   def create(conn,individual_params) do
     geo_location = get_geo_loc(conn,individual_params)
     individual =  %{name: individual_params["name"],location: individual_params["location"],
-    date_of_birth: individual_params["date_of_birth"], place_of_birth: individual_params[""],
+    date_of_birth: individual_params["date_of_birth"], place_of_birth: individual_params["place_of_birth"],
     report_title: individual_params["report_title"], report: individual_params["report"],
     sources: individual_params["sources"], geo_loc: geo_location}    
     changeset = Individual.changeset(%Individual{},individual)
     nationalities = String.split(individual_params["individualnationalities"],",")
-    identifications = String.split(individual_params["individualidentifications"],";")
     case Repo.insert(changeset) do
       {:ok, individual} ->
         individual = Repo.preload(Repo.get(Individual,individual.id),[:individualnationalities,:individuallanguages,:individualidentifications,] )
         for nationality <- nationalities, do: build_individual_nationality(nationality,individual.id)
-        for identification <- identifications, do: build_individaul_identifications(identification,individual.id)
+        if individual_params["individualidentifications"] do
+          identifications = String.split(individual_params["individualidentifications"],";")
+          for identification <- identifications, do: build_individaul_identifications(identification,individual.id)
+        end 
         conn
         |> put_status(:created)
         > render("show.json", individual: individual)
@@ -51,7 +53,7 @@ defmodule Terror.IndividualController do
   defp get_geo_loc(conn,individual_params) do
     HTTPoison.start
     case HTTPoison.get("https://maps.googleapis.com/maps/api/geocode/json",[],
-    params: %{address: individual_params["location"],key: "AIzaSyCtHMUj7UBHBI53TIlzNqa4JgninhLrzbk"}) do
+    params: %{address: individual_params["place_of_birth"],key: "AIzaSyCtHMUj7UBHBI53TIlzNqa4JgninhLrzbk"}) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         json = Poison.decode!(body)
         json = Enum.at(json["results"],0)
