@@ -8,11 +8,12 @@ class Global extends Component {
     this.props.retriveAllIndividuals();
   }  
   render() {
-    const { individuals } = this.props;
+    const { individuals,router } = this.props;
     return(
     <div>
       <GlobalMap 
         individuals={ individuals }
+        router={router}
       />
     </div>
     );

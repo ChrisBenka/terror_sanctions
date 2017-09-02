@@ -14,6 +14,7 @@ import DashboardNavbar from '../DashboardNavbar';
 import Alert from '../Alert';
 import Feed from '../Feed';
 import AddIndividual from '../AddIndividual';
+import IndividualReport from '../IndividualReport';
 
 class App extends Component {
   constructor(props) {
@@ -47,10 +48,11 @@ class App extends Component {
                 <Sidebar router={router} />
               }
               <Alert pathname={location.pathname} />
-              <MatchAuthenticated exactly pattern="/" component={Home} {...authProps} />
+              <MatchAuthenticated exactly pattern="/" component={Home} {...authProps} router={router} />
               <MatchAuthenticated exactly pattern="/individual-reports" component={Feed} location={location} {...authProps} />
               <MatchAuthenticated exactly pattern="/create-individual-report" component={AddIndividual} location={location} {...authProps} />
               <MatchAuthenticated exactly pattern="/terror-group-reports" component={Feed} location={location} {...authProps} />
+              <MatchAuthenticated exactly pattern="/individual-report" component={IndividualReport} />
               <RedirectAuthenticated pattern="/login" component={Login} {...authProps} />
               <RedirectAuthenticated pattern="/signup" component={Signup} {...authProps} />
               <Miss component={NotFound} />

@@ -8,6 +8,7 @@ type Props = {
   exactly?: boolean, //eslint-disable-line
   isAuthenticated: boolean,
   willAuthenticate: boolean,
+  router: object,
 }
 
 const MatchAuthenticated = ({
@@ -15,13 +16,14 @@ const MatchAuthenticated = ({
   exactly,
   isAuthenticated,
   willAuthenticate,
+  router,
   component: Component,
 }: Props) => (
   <Match
     exactly={exactly}
     pattern={pattern}
     render={(props) => {
-      if (isAuthenticated) { return <Component {...props} />; }
+      if (isAuthenticated) { return <Component {...props} router={router} />; }
       if (willAuthenticate) { return null; }
       if (!willAuthenticate && !isAuthenticated) { return <Redirect to={{ pathname: '/login' }} />; }
       return null;
