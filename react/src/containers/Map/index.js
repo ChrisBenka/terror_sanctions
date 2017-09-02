@@ -12,7 +12,7 @@ class Global extends Component {
     return(
     <div>
       <GlobalMap 
-        individuals={ individuals }
+        individuals={individuals}
         router={router}
       />
     </div>

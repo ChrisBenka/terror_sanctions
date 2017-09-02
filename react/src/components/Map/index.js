@@ -16,8 +16,10 @@ const fillMarkers = (individuals) => {
 
 const findIndividualId = (marker) => {
   const individualPopupHtml = (marker["_popup"]["_content"]);
+  let individaulName = $.parseHTML(individualPopupHtml)[1].data;
+  individaulName = individaulName.replace(/\s/g, '')
   const individaulID = $.parseHTML(individualPopupHtml)[0].innerHTML;
-  return individaulID;
+  return {individaulID,individaulName};
 }
 
 class GlobalMap extends Component {
@@ -26,7 +28,7 @@ class GlobalMap extends Component {
   }
 
   render() {
-    const { individuals } = this.props;
+    const { individuals,router } = this.props;
     if(individuals.length>0){
      let markers = fillMarkers(individuals);
     return (
@@ -40,7 +42,8 @@ class GlobalMap extends Component {
           markers={markers}
           wrapperOptions={{enableDefaultStyle: true}}
           onMarkerClick={(marker)=>{
-          const individaulID =  findIndividualId(marker)
+          const {individaulID,individaulName} =  findIndividualId(marker)
+          router.transitionTo('/individual-report/'+individaulName+individaulID);
           }}
         />
       </Map>

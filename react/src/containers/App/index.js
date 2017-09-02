@@ -52,7 +52,7 @@ class App extends Component {
               <MatchAuthenticated exactly pattern="/individual-reports" component={Feed} location={location} {...authProps} />
               <MatchAuthenticated exactly pattern="/create-individual-report" component={AddIndividual} location={location} {...authProps} />
               <MatchAuthenticated exactly pattern="/terror-group-reports" component={Feed} location={location} {...authProps} />
-              <MatchAuthenticated exactly pattern="/individual-report" component={IndividualReport} />
+              <MatchAuthenticated exactly pattern="/individual-report/:individualID" location={location} {...authProps} component={IndividualReport} />
               <RedirectAuthenticated pattern="/login" component={Login} {...authProps} />
               <RedirectAuthenticated pattern="/signup" component={Signup} {...authProps} />
               <Miss component={NotFound} />
