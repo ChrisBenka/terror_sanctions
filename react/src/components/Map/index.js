@@ -43,7 +43,7 @@ class GlobalMap extends Component {
           wrapperOptions={{enableDefaultStyle: true}}
           onMarkerClick={(marker)=>{
           const {individaulID,individaulName} =  findIndividualId(marker)
-          router.transitionTo('/individual-report/'+individaulName+individaulID);
+          router.transitionTo('/individual-report/'+individaulName+'/'+individaulID);
           }}
         />
       </Map>

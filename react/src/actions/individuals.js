@@ -24,3 +24,13 @@ export function addIndividual(data) {
       dispatch({ type: 'SHOW_ALERT', message: 'Problem creating individual' });
     });
 }
+
+export function getIndividual(individualID) {
+  return dispatch => instance.get('individuals/'+individualID, {
+  }).then((response) => {
+    dispatch({type: 'RETRIEVED_INDIVIDUAL', response})
+  })
+  .catch(() => {
+    dispatch({ type: 'SHOW_ALERT', message: 'Problem retrieving individual'});
+  });
+}

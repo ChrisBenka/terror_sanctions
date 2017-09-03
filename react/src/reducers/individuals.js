@@ -1,5 +1,6 @@
 const initialState = {
   individuals: [],
+  individual:{},
 };
 
 export default function (state = initialState, action) {
@@ -9,6 +10,11 @@ export default function (state = initialState, action) {
         ...state,
         individuals: action.response.data.data,
       };
+    case 'RETRIEVED_INDIVIDUAL':
+      return {
+        ...state,
+        individual: action.response.data.data
+      }
     default:
       return state;
   }

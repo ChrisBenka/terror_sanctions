@@ -6,7 +6,6 @@ import WorldMap from '../Map';
 class Home extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
     this.handleLogout = this.handleLogout.bind(this);
   }
 
