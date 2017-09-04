@@ -12,7 +12,6 @@ class AddIndividual extends Component {
   handleSubmit(data) {
     this.props.addIndividual(data);
   }
-  
   render() {
     return (
       <div className="light-grey-theme">
@@ -24,8 +23,6 @@ class AddIndividual extends Component {
   }
 }
 
-//  name,loc,dob,dod,place of birth,report title, report, srouces, 
-//  individual langauges individual identifications 
 AddIndividual.propTypes = {
   addIndividual: PropTypes.func.isRequired,
 };
