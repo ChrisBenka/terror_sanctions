@@ -26,11 +26,11 @@ export function addIndividual(data) {
 }
 
 export function getIndividual(individualID) {
-  return dispatch => instance.get('individuals/'+individualID, {
+  return dispatch => instance.get('individuals/' + individualID, { //  eslint-disable-line
   }).then((response) => {
-    dispatch({type: 'RETRIEVED_INDIVIDUAL', response})
+    dispatch({ type: 'RETRIEVED_INDIVIDUAL', response });
   })
-  .catch(() => {
-    dispatch({ type: 'SHOW_ALERT', message: 'Problem retrieving individual'});
-  });
+    .catch(() => {
+      dispatch({ type: 'SHOW_ALERT', message: 'Problem retrieving individual' });
+    });
 }

@@ -30,22 +30,22 @@ Home.propTypes = {
   logout: PropTypes.func.isRequired,
   currentUser: PropTypes.object.isRequired, //eslint-disable-line
   isAuthenticated: PropTypes.bool.isRequired,
+  router: PropTypes.object.isRequired,  //eslint-disable-line
 };
 
-const mapStateToProps = (state) =>{
-    return {
-      isAuthenticated: state.session.isAuthenticated,
-      currentUser: state.session.currentUser,
-    }
-}
+const mapStateToProps = (state) => {  //eslint-disable-line
+  return {
+    isAuthenticated: state.session.isAuthenticated,
+    currentUser: state.session.currentUser,
+  };
+};
 
-const mergeProps = (state,actions,ownProps) =>{
+const mergeProps = (state, actions, ownProps) => {  //eslint-disable-line
   return {
     ...state,
     ...actions,
-    ...ownProps
-  }
-}
+    ...ownProps,
+  };
+};
 
-export default connect(mapStateToProps,{logout},mergeProps)(Home);
-
+export default connect(mapStateToProps, { logout }, mergeProps)(Home);
