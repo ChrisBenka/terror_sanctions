@@ -31,10 +31,11 @@ class Feed extends Component { //eslint-disable-line
   constructor(props) {
     super(props);
     this.props.retriveAllIndividuals();
+    console.log(this.props);
   }
 
   render() {
-    const { location, individualReports } = this.props;
+    const { location, individualReports, router } = this.props;
 
     return (
       <div className="container">
@@ -44,6 +45,16 @@ class Feed extends Component { //eslint-disable-line
           columns={columns}
           showPageSizeOptions={false}
           defaultPageSize={15}
+          getTdProps = { (state, rowInfo, column, instance) =>{
+            return{
+              onClick: (e,handleOriginal) => {
+                 router.transitionTo('/individual-report/'+rowInfo.original.name.replace(/\s/g, '')+'/'+rowInfo.original.id);
+                if (handleOriginal) {
+                  handleOriginal()
+                  }
+              }
+            }
+          }}
         />
       </div>
     );

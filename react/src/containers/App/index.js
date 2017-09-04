@@ -49,7 +49,7 @@ class App extends Component {
               }
               <Alert pathname={location.pathname} />
               <MatchAuthenticated exactly pattern="/" component={Home} {...authProps} router={router} />
-              <MatchAuthenticated exactly pattern="/individual-reports" component={Feed} location={location} {...authProps} />
+              <MatchAuthenticated exactly pattern="/individual-reports" component={Feed} location={location} {...authProps} router={router} />
               <MatchAuthenticated exactly pattern="/create-individual-report" component={AddIndividual} location={location} {...authProps} />
               <MatchAuthenticated exactly pattern="/terror-group-reports" component={Feed} location={location} {...authProps} />
               <MatchAuthenticated exactly pattern="/individual-report/:individualName/:individualID" location={location} {...authProps} component={IndividualReport} />
