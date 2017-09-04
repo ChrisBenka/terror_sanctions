@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import {textarea} from '@blueprintjs/core';
-
+import {textarea, input} from '@blueprintjs/core';
+import Input from '../Input';
 const ReportTextInformation = (props) => (
-    <form>
-        <p>form header</p>
-        <textarea />
+    <form className="container">
+        <label className="pt-label">
+            Full Name
+            <input className="pt-input readOnly" readOnly value={props.individual.name} dir="auto"/>
+        </label>
     </form>
-)
+);
 
 export default ReportTextInformation;

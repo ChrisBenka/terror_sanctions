@@ -5,13 +5,15 @@ import {getIndividual} from '../../actions/individuals';
 class IndividualReport extends Component { //eslint-disable-line
   constructor(props) {
     super(props);
-    console.log(this.props.getIndividual(parseInt(
+    this.props.getIndividual(parseInt(
       this.props.params.individualID
-    )));
-    console.log(this.props);
+    ));
 }
 
   render() {
+    const { individual } = this.props;
+    if(individual){
+      console.log(individual);
     return (
       <div className="container">
           <div className="row">
@@ -21,6 +23,8 @@ class IndividualReport extends Component { //eslint-disable-line
           </div>
       </div>
     );
+  }
+    return <div> Loading... </div>;
   }
 }
 
