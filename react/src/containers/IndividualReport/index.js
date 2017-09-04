@@ -12,7 +12,7 @@ class IndividualReport extends Component { //eslint-disable-line
 
   render() {
     const { individual } = this.props;
-    if(individual){
+    if(individual.id){
       console.log(individual);
     return (
       <div className="container">
