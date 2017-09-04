@@ -31,7 +31,6 @@ class Feed extends Component { //eslint-disable-line
   constructor(props) {
     super(props);
     this.props.retriveAllIndividuals();
-    console.log(this.props);
   }
 
   render() {
@@ -45,15 +44,15 @@ class Feed extends Component { //eslint-disable-line
           columns={columns}
           showPageSizeOptions={false}
           defaultPageSize={15}
-          getTdProps = { (state, rowInfo, column, instance) =>{
-            return{
-              onClick: (e,handleOriginal) => {
-                 router.transitionTo('/individual-report/'+rowInfo.original.name.replace(/\s/g, '')+'/'+rowInfo.original.id);
+          getTdProps={(rowInfo) => {  //eslint-disable-line
+            return {
+              onClick: (e, handleOriginal) => {
+                router.transitionTo(`/individual-report/${rowInfo.original.name.replace(/\s/g, '')}/${rowInfo.original.id}`);
                 if (handleOriginal) {
-                  handleOriginal()
-                  }
-              }
-            }
+                  handleOriginal();
+                }
+              },
+            };
           }}
         />
       </div>
@@ -65,6 +64,7 @@ Feed.propTypes = {
   location: PropTypes.object.isRequired, //eslint-disable-line
   individualReports: PropTypes.array.isRequired,  //eslint-disable-line
   retriveAllIndividuals: PropTypes.func.isRequired,
+  router: PropTypes.object.isRequired,  //eslint-disable-line
 };
 
 export default connect(

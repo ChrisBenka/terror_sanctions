@@ -2,14 +2,14 @@ import React, { PropTypes } from 'react';
 import { textarea, input } from '@blueprintjs/core';
 
 const beautifyNationalities = (nationalities) => {
-  const beautifiedNationalities = nationalities.reduce((previousValue, element) => {
+  const beautifiedNationalities = nationalities.reduce((previousValue, element) => {  //eslint-disable-line
     return `${previousValue}','${element.nationality}`;
   }, '');
   return beautifiedNationalities.substring(1);
 };
 
 const beautifyIdentifications = (identifications) => {
-  const beautifiedIdentifications = identifications.reduce((previousValue, element) => {
+  const beautifiedIdentifications = identifications.reduce((previousValue, element) => {  //eslint-disable-line
     return `${previousValue};${element.type},${element.nation},${element.identification}`;
   }, '');
   return beautifiedIdentifications.substring(1);
