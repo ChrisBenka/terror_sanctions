@@ -28,6 +28,8 @@ config :terror, Terror.Repo,
   password: "postgres",
   database: "terror_dev",
   hostname: "localhost",
+  types: Terror.PostgrexTypes,
   pool_size: 10
+  
 
 import_config "dev.secret.exs"

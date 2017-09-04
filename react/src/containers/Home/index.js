@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session';
-import SimpleExample from '../../components/Map';
+import WorldMap from '../Map';
 
 class Home extends Component {
   constructor(props) {
@@ -14,30 +14,38 @@ class Home extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, router } = this.props;
     return (
       <div className="container align-middle home">
         {isAuthenticated &&
           <div>
-            <SimpleExample />
+            <WorldMap router={router} />
           </div>
         }
       </div>
     );
   }
 }
-Home.contextTypes = {
-  router: PropTypes.object,
-};
 Home.propTypes = {
   logout: PropTypes.func.isRequired,
   currentUser: PropTypes.object.isRequired, //eslint-disable-line
   isAuthenticated: PropTypes.bool.isRequired,
 };
 
-export default connect(
-  state => ({
-    isAuthenticated: state.session.isAuthenticated,
-    currentUser: state.session.currentUser,
-  }), { logout },
-)(Home);
+const mapStateToProps = (state) =>{
+    return {
+      isAuthenticated: state.session.isAuthenticated,
+      currentUser: state.session.currentUser,
+    }
+}
+
+const mergeProps = (state,actions,ownProps) =>{
+  return {
+    ...state,
+    ...actions,
+    ...ownProps
+  }
+}
+
+export default connect(mapStateToProps,{logout},mergeProps)(Home);
+

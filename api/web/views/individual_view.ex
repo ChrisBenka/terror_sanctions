@@ -19,8 +19,9 @@ defmodule Terror.IndividualView do
       report_title: individual.report_title,
       report: individual.report,
       sources: individual.sources,
-      nationalities: individual.nationalities,
-      identifications: individual.identifications,
-      languages: individual.languages}
+      nationalities: individual.individualnationalities,
+      identifications: individual.individualidentifications,
+      languages: individual.individuallanguages,
+      geo_loc: Geo.JSON.encode(individual.geo_loc)}
   end
 end

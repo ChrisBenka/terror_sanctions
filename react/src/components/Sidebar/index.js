@@ -1,23 +1,29 @@
-import React from 'react';
-import { Menu, MenuItem, MenuDivider } from '@blueprintjs/core';
-import { Link } from 'react-router';
+import React, { PropTypes } from 'react';
+import { Menu, MenuItem } from '@blueprintjs/core';
 
-class MenuExample extends React.Component {
+class MenuExample extends React.Component { //eslint-disable-line
   render() {
+    const { router } = this.props;
     return (
       <Menu className="menu">
-        <Link to="/individual-reports">
-          <div>
-            <MenuItem className="menu-item" text="Individual Reports" iconName="cog" />
-          </div>
-        </Link>
-        <Link to="/terror-group-reports">
-          <div>
-            <MenuItem className="menu-item" text="Terror Group Reports" iconName="cog" />
-          </div>
-        </Link>
+        <div>
+          <MenuItem className="menu-item men-item pt-icon-person" text="Individuals">
+            <MenuItem className=" men-item pt-icon-edit " text="Create Individual" onClick={() => { router.transitionTo('/create-individual-report'); }} />
+            <MenuItem className=" men-item  pt-icon-numbered-list" text="Individual Reports" onClick={() => { router.transitionTo('/individual-reports'); }} />
+          </MenuItem>
+        </div>
+        <div>
+          <MenuItem className="menu-item pt-icon-globe" text="Global Map" onClick={() => { router.transitionTo('/'); }} />
+        </div>
+        <div>
+          <MenuItem className="menu-item pt-icon-people" text="Terror Group Reports" onClick={() => { router.transitionTo('/terror-group-reports'); }} />
+        </div>
       </Menu>
     );
   }
 }
+
+MenuExample.propTypes = {
+  router: PropTypes.object.isRequired, //eslint-disable-line
+};
 export default MenuExample;

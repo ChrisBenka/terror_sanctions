@@ -1,6 +1,8 @@
 defmodule Terror.IndividualLanguage do
   use Terror.Web, :model
   @primary_key false
+    @derive {Poison.Encoder, only: [:language]}
+
   schema "individuallanguages" do
     field :language, :string, primary_key: true
     belongs_to :individual, Terror.Individual, primary_key: true

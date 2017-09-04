@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import { retriveAllIndividuals } from '../../actions/individuals';
 
-const capatilizeFirstLetters = (path) => {
-  return path.replace(/\w\S*/g, txt => { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+const capatilizeFirstLetters = (path) => {  //eslint-disable-line
+  return path.replace(/\w\S*/g, txt => { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });  //eslint-disable-line
 };
 
 const beautify = (path) => {
@@ -11,20 +13,48 @@ const beautify = (path) => {
   return capatilizeFirstLetters(pageTitle);
 };
 
-const data = [];
-const columns = [];
+const columns = [{
+  Header: 'Name',
+  accessor: 'name',
+},
+{
+  Header: 'Date of Birth',
+  accessor: 'date_of_birth',
+},
+{
+  Header: 'Location',
+  accessor: 'location',
+},
+];
 
 class Feed extends Component { //eslint-disable-line
+  constructor(props) {
+    super(props);
+    this.props.retriveAllIndividuals();
+    console.log(this.props);
+  }
+
   render() {
-    const { location } = this.props;
+    const { location, individualReports, router } = this.props;
+
     return (
       <div className="container">
         <h1 className="text-center">{beautify(location.pathname)}</h1>
         <ReactTable
-          data={data}
+          data={individualReports}
           columns={columns}
           showPageSizeOptions={false}
           defaultPageSize={15}
+          getTdProps = { (state, rowInfo, column, instance) =>{
+            return{
+              onClick: (e,handleOriginal) => {
+                 router.transitionTo('/individual-report/'+rowInfo.original.name.replace(/\s/g, '')+'/'+rowInfo.original.id);
+                if (handleOriginal) {
+                  handleOriginal()
+                  }
+              }
+            }
+          }}
         />
       </div>
     );
@@ -33,6 +63,12 @@ class Feed extends Component { //eslint-disable-line
 
 Feed.propTypes = {
   location: PropTypes.object.isRequired, //eslint-disable-line
+  individualReports: PropTypes.array.isRequired,  //eslint-disable-line
+  retriveAllIndividuals: PropTypes.func.isRequired,
 };
 
-export default Feed;
+export default connect(
+  state => ({
+    individualReports: state.individuals.individuals,
+  }), { retriveAllIndividuals },
+)(Feed);
