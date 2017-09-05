@@ -3,7 +3,7 @@ defmodule Terror.Repo.Migrations.AddGeomLocArrayToTerrorGroupLoc do
 
  def change do
     alter table(:terrorgrouplocations) do
-      add :geo_locs, {:array, :geometry}
+      add :geo_locs, {:array,:geometry}
     end
 end
 end
