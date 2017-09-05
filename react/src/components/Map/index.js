@@ -31,13 +31,19 @@ class GlobalMap extends Component { //  eslint-disable-line
     }
   }
   
-   onMouseOver(e,layer){
-    console.log('onMouseOver',e)
+   onMouseOver(e){
+    e.layer.openPopup()
+  }
+  onMouseOut(e){
+    console.log(e.layer)
+    e.layer.closePopup()
   }
   
    onEachFeature(feature, layer) {
      if (feature.properties && feature.properties.name) {
         layer.bindPopup(feature.properties.name);
+        layer._popup.setLatLng([38.792341,33.378686]);
+        console.log(layer._popup);
     }
   }
 
@@ -65,6 +71,7 @@ class GlobalMap extends Component { //  eslint-disable-line
               style={getStyle} 
               onMouseOver={this.onMouseOver}
               onEachFeature={this.onEachFeature}
+              onMouseOut={this.onMouseOut}
             />
           </Map>
         </div>
