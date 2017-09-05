@@ -4,6 +4,7 @@ defmodule Terror.TerrorGroupLocation do
   @primary_key false
   schema "terrorgrouplocations" do
     field :location, :string, primary_key: true
+    field :geo_locs, {:array, Geo.Point}
     belongs_to :terrorgroup, Terror.Terrorgroup, primary_key: true
 
     timestamps()
@@ -14,7 +15,7 @@ defmodule Terror.TerrorGroupLocation do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:location])
+    |> cast(params, [:location, :geo_locs])
     |> validate_required([:location])
   end
 end
