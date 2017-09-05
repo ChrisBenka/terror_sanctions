@@ -22,5 +22,6 @@ defmodule Terror.TerrorGroup do
     struct
     |> cast(params, [:name, :place_of_origin, :date_of_origin, :mission, :report_title, :report, :source])
     |> validate_required([:name, :place_of_origin, :date_of_origin, :mission, :report_title, :report, :source])
+    |> unique_constraint(:name)
   end
 end
