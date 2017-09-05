@@ -59,7 +59,6 @@ class GlobalMap extends Component { //  eslint-disable-line
                 const { individaulID, individaulName } = findIndividualId(marker);
                 router.transitionTo(`/individual-report/${individaulName}/${individaulID}`);
               }}
-              onMouseOver={this.onMouseOver}
             />
             <GeoJSON 
               data={getGeoJson} 
