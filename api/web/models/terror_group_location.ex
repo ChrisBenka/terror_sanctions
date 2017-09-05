@@ -15,7 +15,7 @@ defmodule Terror.TerrorGroupLocation do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:location, :geo_locs])
-    |> validate_required([:location])
+    |> cast(params, [:location, :geo_locs,:terrorgroup_id])
+    |> validate_required([:location,:terrorgroup_id])
   end
 end

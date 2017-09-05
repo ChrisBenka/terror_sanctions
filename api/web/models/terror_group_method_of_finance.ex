@@ -4,7 +4,6 @@ defmodule Terror.TerrorGroupMethodOfFinance do
   schema "terrorgroupmethodsoffinance" do
     field :method, :string, primary_key: true
     belongs_to :terrorgroup, Terror.Terrorgroup, primary_key: true
-
     timestamps()
   end
 
@@ -13,7 +12,7 @@ defmodule Terror.TerrorGroupMethodOfFinance do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:method])
-    |> validate_required([:method])
+    |> cast(params, [:method,:terrorgroup_id])
+    |> validate_required([:method,:terrorgroup_id])
   end
 end
