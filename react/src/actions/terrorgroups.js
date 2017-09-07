@@ -4,11 +4,6 @@ const instance = axios.create({
   baseURL: 'http://localhost:4000/api',
   timeout: 1000,
 });
-const geoJSONInstance = axios.create({
-  baseURL:'',
-  timeout:1000,
-});
-
 
 export function retriveAllTerrorGroups() {
   return dispatch => instance.get('/terror-groups/')
@@ -20,15 +15,12 @@ export function retriveAllTerrorGroups() {
     });
 }
 
-export  function retrieveAllGeoJsons() {
+export function retrieveAllGeoJsons() {
   return dispatch => axios.get('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
-  .then((response) =>  {
-    console.log(response)
-    dispatch({ type: 'RETRIEVED_ALL_GEO_JSONS', response });
-  })
-  .catch(() => {
+    .then((response) => {
+      dispatch({ type: 'RETRIEVED_ALL_GEO_JSONS', response });
+    })
+    .catch(() => {
       dispatch({ type: 'SHOW_ALERT', message: 'Unable to retrieve gejson information' });
-  })
+    });
 }
-
-

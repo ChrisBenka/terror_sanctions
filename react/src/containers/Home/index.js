@@ -10,7 +10,7 @@ class Home extends Component {
   }
 
   handleLogout() {
-    this.props.logout(this.context.router);
+    this.props.logout(this.props.router);
   }
 
   render() {
@@ -26,26 +26,23 @@ class Home extends Component {
     );
   }
 }
+
 Home.propTypes = {
   logout: PropTypes.func.isRequired,
-  currentUser: PropTypes.object.isRequired,
+  currentUser: PropTypes.object.isRequired, //  eslint-disable-line
   isAuthenticated: PropTypes.bool.isRequired,
-  router: PropTypes.object.isRequired, 
+  router: PropTypes.object.isRequired, //  eslint-disable-line
 };
 
-const mapStateToProps = (state) => { 
-  return {
-    isAuthenticated: state.session.isAuthenticated,
-    currentUser: state.session.currentUser,
-  };
-};
+const mapStateToProps = state => ({
+  isAuthenticated: state.session.isAuthenticated,
+  currentUser: state.session.currentUser,
+});
 
-const mergeProps = (state, actions, ownProps) => { 
-  return {
-    ...state,
-    ...actions,
-    ...ownProps,
-  };
-};
+const mergeProps = (state, actions, ownProps) => ({
+  ...state,
+  ...actions,
+  ...ownProps,
+});
 
 export default connect(mapStateToProps, { logout }, mergeProps)(Home);

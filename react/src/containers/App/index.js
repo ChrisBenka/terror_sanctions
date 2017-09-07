@@ -1,4 +1,3 @@
-// @flow
 import React, { Component, PropTypes } from 'react';
 import { BrowserRouter, Miss } from 'react-router';
 import { connect } from 'react-redux';
@@ -21,25 +20,14 @@ class App extends Component {
     super(props);
     this.state = { width: '0', height: '0' };
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
   componentDidMount() {
-    window.addEventListener('resize', this.updateWindowDimensions);
-    
     const token = localStorage.getItem('token');
     if (token) {
       this.props.authenticate();
     } else {
       this.props.unauthenticate();
     }
-  }
-
-  updateWindowDimensions() {
-    this.setState({ width: window.innerWidth, height: window.innerHeight });
-  }
-
-   close(){
-    this.setState({ showModal: false });
   }
 
   render() {
@@ -63,8 +51,8 @@ class App extends Component {
               <MatchAuthenticated exactly pattern="/create-individual-report" component={AddIndividual} location={location} {...authProps} />
               <MatchAuthenticated exactly pattern="/terror-group-reports" component={Feed} location={location} {...authProps} />
               <MatchAuthenticated exactly pattern="/individual-report/:individualName/:individualID" location={location} {...authProps} component={IndividualReport} />
-              <RedirectAuthenticated pattern="/login" component={Login} {...authProps} />
-              <RedirectAuthenticated pattern="/signup" component={Signup} {...authProps} />
+              <RedirectAuthenticated pattern="/login" component={Login} {...authProps} router={router} />
+              <RedirectAuthenticated pattern="/signup" component={Signup} {...authProps} router={router} />
               <Miss component={NotFound} />
             </div>
           </div>

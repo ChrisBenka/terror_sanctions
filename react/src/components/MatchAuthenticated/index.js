@@ -5,7 +5,7 @@ import { Match, Redirect } from 'react-router';
 type Props = {
   component: any,
   pattern: string,
-  exactly?: boolean, 
+  exactly?: boolean,
   isAuthenticated: boolean,
   willAuthenticate: boolean,
   router: object,
@@ -29,5 +29,9 @@ const MatchAuthenticated = ({
       return null;
     }}
   />);
+
+MatchAuthenticated.defaultProps = {
+  exactly: true,
+};
 
 export default MatchAuthenticated;

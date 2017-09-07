@@ -1,6 +1,6 @@
 const initialState = {
   terrorgroups: [],
-  geoJson:[]
+  geoJson: [],
 };
 
 export default function (state = initialState, action) {
@@ -11,10 +11,10 @@ export default function (state = initialState, action) {
         terrorgroups: action.response.data.data,
       };
     case 'RETRIEVED_ALL_GEO_JSONS':
-        return {
-            ...state,
-            geoJson:action.resposne.data.data,
-        }
+      return {
+        ...state,
+        geoJson: action.resposne.data.data,
+      };
     default:
       return state;
   }

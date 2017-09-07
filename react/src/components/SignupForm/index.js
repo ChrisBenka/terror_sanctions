@@ -1,4 +1,3 @@
-// @flow
 import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router';
@@ -70,9 +69,13 @@ class SignupForm extends Component {
 }
 
 SignupForm.propTypes = {
-  submitting: PropTypes.bool, 
+  submitting: PropTypes.bool,
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+};
+
+SignupForm.defaultProps = {
+  submitting: false,
 };
 
 const validate = (values) => {

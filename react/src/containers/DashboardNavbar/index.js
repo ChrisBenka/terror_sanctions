@@ -8,9 +8,11 @@ class DashboardNavbar extends Component {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
   }
+
   handleLogout() {
-    this.props.logout(this.context.router);
+    this.props.logout(this.props.router);
   }
+
   render() {
     const { currentUser, isAuthenticated } = this.props;
 
@@ -38,18 +40,22 @@ class DashboardNavbar extends Component {
   }
 }
 
-DashboardNavbar.contextTypes = {
-  router: PropTypes.object,
-};
 DashboardNavbar.propTypes = {
   logout: PropTypes.func.isRequired,
-  currentUser: PropTypes.object.isRequired, 
+  currentUser: PropTypes.object.isRequired, //  eslint-disable-line 
   isAuthenticated: PropTypes.bool.isRequired,
+  router: PropTypes.object.isRequired,  //  eslint-disable-line
 };
+
+const mergeProps = (state, actions, ownProps) => ({
+  ...state,
+  ...actions,
+  ...ownProps,
+});
 
 export default connect(
   state => ({
     isAuthenticated: state.session.isAuthenticated,
     currentUser: state.session.currentUser,
-  }), { logout },
+  }), { logout }, mergeProps,
 )(DashboardNavbar);

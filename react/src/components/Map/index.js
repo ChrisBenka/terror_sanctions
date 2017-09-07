@@ -1,39 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-import { Map, TileLayer, getGEOJSON } from 'react-leaflet';
+import { Map, TileLayer } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
-import { fillMarkers, findIndividualId, } from '../../helpermethods/map';
-import $ from 'jquery';
+import { fillMarkers, findIndividualId } from '../../helpermethods/map';
 
 class GlobalMap extends Component { //  eslint-disable-line
-  
-  getStyle(feature, layer) {
-    return {
-      color: '#006400',
-      weight: 5,
-      opacity: 0.65
-    }
-  }
-  
-   onMouseOver(e){
-    e.layer.openPopup()
-  }
-  onMouseOut(e){
-    console.log(e.layer)
-    e.layer.closePopup()
-  }
-  
-   onEachFeature(feature, layer) {
-     if (feature.properties && feature.properties.name) {
-        layer.bindPopup(feature.properties.name);
-        layer._popup.setLatLng([38.792341,33.378686]);
-        console.log(layer._popup);
-    }
-  }
 
+  static onMouseOver(e) {
+    e.layer.openPopup();
+  }
+  static onMouseOut(e) {
+    e.layer.closePopup();
+  }
   render() {
-    const { individuals, router, terrorgroups, geoJson } = this.props;
-    if (individuals.length > 0 && terrorgroups.length>0 && geoJson.length>0) {
-      console.log(geoJson)
+    const { individuals, router, terrorgroups } = this.props;
+    if (individuals.length > 0 && terrorgroups.length > 0) {
       const markers = fillMarkers(individuals);
       return (
         <div>
@@ -58,19 +38,10 @@ class GlobalMap extends Component { //  eslint-disable-line
   }
 }
 
-const getStyle = (feature, layer) => {
-    return {
-      color: '#006400',
-      weight: 5,
-      opacity: 0.65
-    }
-}
-
-
-
 GlobalMap.propTypes = {
   individuals: PropTypes.array.isRequired, //eslint-disable-line  
   router: PropTypes.object.isRequired, //eslint-disable-line
-  geoJSON:PropTypes.array.isRequired,
+  terrorgroups: PropTypes.array.isRequired, //  eslint-disable-line
 };
+
 export default GlobalMap;
