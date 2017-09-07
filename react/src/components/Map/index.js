@@ -1,42 +1,33 @@
 import React, { Component, PropTypes } from 'react';
 import { Map, TileLayer, GeoJSON } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
-import { fillMarkers, findIndividualId, buildTerrorGroupCountryHash } from '../../helpermethods/map';
+import { fillMarkers, findIndividualId, buildTerrorGroupCountryHash, filterGeoJsonByTerrorLocations } from '../../helpermethods/map';
+
+const onMouseOver = (e) => {
+  e.layer.openPopup();
+};
+const onMouseOut = (e) => {
+  e.layer.closePopup();
+};
+const getStyle = () => ({
+  color: '#006400',
+  weight: 5,
+  opacity: 0.65,
+});
+
+const onEachFeature = (feature, layer) => {
+  if (feature.properties && feature.properties.name) {
+    layer.bindPopup(feature.properties.terrorgroups.toString());
+    layer._popup.setLatLng(feature.geometry.coordinates[0]);  //eslint-disable-line
+  }
+};
 
 class GlobalMap extends Component { //  eslint-disable-line
-
-  static onMouseOver(e) {
-    e.layer.openPopup();
-  }
-  static onMouseOut(e) {
-    e.layer.closePopup();
-  }
-  static getStyle() {
-    return {
-      color: '#006400',
-      weight: 5,
-      opacity: 0.65,
-    };
-  }
-
-  static onEachFeature(feature, layer) {
-    if (feature.properties && feature.properties.name) {
-      layer.bindPopup(feature.properties.terrorgroups.toString());
-      layer._popup.setLatLng(feature.geometry.coordinates[0]);  //eslint-disable-line
-    }
-  }
   render() {
     const { individuals, router, terrorgroups, geoJson } = this.props;
     if (individuals.length > 0 && terrorgroups.length > 0) {
       const hashmapOfTerrorLocations = buildTerrorGroupCountryHash(terrorgroups);
-      geoJson.features = geoJson.features.filter((feature) => { //eslint-disable-line
-        if (Object.keys(hashmapOfTerrorLocations).includes(feature.properties.name)) {
-          feature.properties.terrorgroups = []; //  eslint-disable-line
-          feature.properties.terrorgroups = hashmapOfTerrorLocations[feature.properties.name]; //eslint-disable-line
-          return feature;
-        }
-      });
-
+      geoJson.features = filterGeoJsonByTerrorLocations(hashmapOfTerrorLocations, geoJson);
       const markers = fillMarkers(individuals);
       return (
         <div>
@@ -55,10 +46,10 @@ class GlobalMap extends Component { //  eslint-disable-line
             />
             <GeoJSON
               data={geoJson}
-              style={this.getStyle}
-              onEachFeature={this.onEachFeature}
-              onMouseOver={this.onMouseOver}
-              onMouseOut={this.onMouseOut}
+              style={getStyle}
+              onEachFeature={onEachFeature}
+              onMouseOver={onMouseOver}
+              onMouseOut={onMouseOut}
             />
           </Map>
         </div>
