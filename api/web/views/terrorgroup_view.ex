@@ -18,6 +18,7 @@ defmodule Terror.TerrorgroupView do
       report: terrorgroup.report,
       sources: terrorgroup.sources,
       methods: terrorgroup.methodsoffinance,
+      locations: terrorgroup.locations
     }
   end
 end

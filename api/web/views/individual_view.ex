@@ -10,7 +10,6 @@ defmodule Terror.IndividualView do
   end
 
   def render("individual.json", %{individual: individual}) do
-    Apex.ap(individual.individualnationalities)
     %{id: individual.id,
       name: individual.name,
       location: individual.location,
