@@ -70,7 +70,7 @@ class SignupForm extends Component {
 }
 
 SignupForm.propTypes = {
-  submitting: PropTypes.bool, //eslint-disable-line
+  submitting: PropTypes.bool, 
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

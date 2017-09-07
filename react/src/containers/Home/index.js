@@ -28,19 +28,19 @@ class Home extends Component {
 }
 Home.propTypes = {
   logout: PropTypes.func.isRequired,
-  currentUser: PropTypes.object.isRequired, //eslint-disable-line
+  currentUser: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  router: PropTypes.object.isRequired,  //eslint-disable-line
+  router: PropTypes.object.isRequired, 
 };
 
-const mapStateToProps = (state) => {  //eslint-disable-line
+const mapStateToProps = (state) => { 
   return {
     isAuthenticated: state.session.isAuthenticated,
     currentUser: state.session.currentUser,
   };
 };
 
-const mergeProps = (state, actions, ownProps) => {  //eslint-disable-line
+const mergeProps = (state, actions, ownProps) => { 
   return {
     ...state,
     ...actions,

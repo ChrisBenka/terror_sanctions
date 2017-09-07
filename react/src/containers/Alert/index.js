@@ -45,7 +45,7 @@ class AlertContainer extends Component {
 AlertContainer.propTypes = {
   pathname: PropTypes.string.isRequired,
   visible: PropTypes.bool.isRequired,
-  timeout: PropTypes.number, //eslint-disable-line
+  timeout: PropTypes.number,
   message: PropTypes.string.isRequired,
   hideAlert: PropTypes.func.isRequired,
 };

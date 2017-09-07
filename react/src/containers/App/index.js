@@ -19,11 +19,14 @@ import IndividualReport from '../IndividualReport';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = { width: '0', height: '0' };
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
   componentDidMount() {
+    window.addEventListener('resize', this.updateWindowDimensions);
+    
     const token = localStorage.getItem('token');
-
     if (token) {
       this.props.authenticate();
     } else {
@@ -31,6 +34,13 @@ class App extends Component {
     }
   }
 
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
+
+   close(){
+    this.setState({ showModal: false });
+  }
 
   render() {
     const { isAuthenticated, willAuthenticate } = this.props;

@@ -28,6 +28,6 @@ AddIndividual.propTypes = {
 };
 
 export default connect(
-  state => ({ //eslint-disable-line
+  state => ({ 
   }), { addIndividual },
 )(AddIndividual);

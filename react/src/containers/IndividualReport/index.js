@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import ReportTextInformation from '../../components/ReportTextInformation';
 import { getIndividual } from '../../actions/individuals';
 
-class IndividualReport extends Component { //eslint-disable-line
+class IndividualReport extends Component { 
   constructor(props) {
     super(props);
-    this.props.getIndividual(parseInt(  //eslint-disable-line
+    this.props.getIndividual(parseInt(  
       this.props.params.individualID,
     ));
   }
@@ -28,9 +28,9 @@ class IndividualReport extends Component { //eslint-disable-line
 }
 
 IndividualReport.propTypes = {
-  individual: PropTypes.object.isRequired,  //eslint-disable-line
+  individual: PropTypes.object.isRequired,  
   getIndividual: PropTypes.func.isRequired,
-  params: PropTypes.object.isRequired,  //eslint-disable-line
+  params: PropTypes.object.isRequired,  
 };
 
 export default connect(

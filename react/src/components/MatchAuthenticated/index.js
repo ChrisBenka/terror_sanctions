@@ -5,7 +5,7 @@ import { Match, Redirect } from 'react-router';
 type Props = {
   component: any,
   pattern: string,
-  exactly?: boolean, //eslint-disable-line
+  exactly?: boolean, 
   isAuthenticated: boolean,
   willAuthenticate: boolean,
   router: object,

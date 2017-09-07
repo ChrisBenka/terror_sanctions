@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'; //eslint-disable-line
+import React, { Component, PropTypes } from 'react'; 
 import { Field, reduxForm } from 'redux-form';
 import Input from '../Input';
 

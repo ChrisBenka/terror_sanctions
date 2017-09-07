@@ -43,7 +43,7 @@ DashboardNavbar.contextTypes = {
 };
 DashboardNavbar.propTypes = {
   logout: PropTypes.func.isRequired,
-  currentUser: PropTypes.object.isRequired, //eslint-disable-line
+  currentUser: PropTypes.object.isRequired, 
   isAuthenticated: PropTypes.bool.isRequired,
 };
 

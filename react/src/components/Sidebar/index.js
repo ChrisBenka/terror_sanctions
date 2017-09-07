@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Menu, MenuItem } from '@blueprintjs/core';
 
-class MenuExample extends React.Component { //eslint-disable-line
+class MenuExample extends React.Component { 
   render() {
     const { router } = this.props;
     return (
@@ -24,6 +24,6 @@ class MenuExample extends React.Component { //eslint-disable-line
 }
 
 MenuExample.propTypes = {
-  router: PropTypes.object.isRequired, //eslint-disable-line
+  router: PropTypes.object.isRequired, 
 };
 export default MenuExample;

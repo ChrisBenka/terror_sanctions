@@ -57,7 +57,7 @@ class Alert extends Component {
 }
 Alert.propTypes = {
   message: PropTypes.string.isRequired,
-  timeout: PropTypes.number,  //eslint-disable-line
+  timeout: PropTypes.number,  
   onClose: PropTypes.func.isRequired,
 };
 

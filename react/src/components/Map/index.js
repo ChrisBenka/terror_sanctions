@@ -1,25 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { Map, TileLayer, GeoJSON } from 'react-leaflet';
+import { Map, TileLayer, getGEOJSON } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-markercluster';
+import { fillMarkers, findIndividualId, } from '../../helpermethods/map';
 import $ from 'jquery';
-
-const fillMarkers = (individuals) => {
-  const markers = [];
-  for (let i = 0; i < individuals.length; i += 1) {
-    markers.push({ lat: individuals[i].geo_loc.coordinates[0],
-      lng: individuals[i].geo_loc.coordinates[1],
-      popup: `<p style='display:none'>${individuals[i].id}</p>${individuals[i].name}` });
-  }
-  return markers;
-};
-
-const findIndividualId = (marker) => {
-  const individualPopupHtml = (marker._popup._content); //  eslint-disable-line
-  let individaulName = $.parseHTML(individualPopupHtml)[1].data;
-  individaulName = individaulName.replace(/\s/g, '');
-  const individaulID = $.parseHTML(individualPopupHtml)[0].innerHTML;
-  return { individaulID, individaulName };
-};
 
 class GlobalMap extends Component { //  eslint-disable-line
   
@@ -48,8 +31,9 @@ class GlobalMap extends Component { //  eslint-disable-line
   }
 
   render() {
-    const { individuals, router } = this.props;
-    if (individuals.length > 0) {
+    const { individuals, router, terrorgroups, geoJson } = this.props;
+    if (individuals.length > 0 && terrorgroups.length>0 && geoJson.length>0) {
+      console.log(geoJson)
       const markers = fillMarkers(individuals);
       return (
         <div>
@@ -65,13 +49,6 @@ class GlobalMap extends Component { //  eslint-disable-line
                 const { individaulID, individaulName } = findIndividualId(marker);
                 router.transitionTo(`/individual-report/${individaulName}/${individaulID}`);
               }}
-            />
-            <GeoJSON 
-              data={getGeoJson} 
-              style={getStyle} 
-              onMouseOver={this.onMouseOver}
-              onEachFeature={this.onEachFeature}
-              onMouseOut={this.onMouseOut}
             />
           </Map>
         </div>
@@ -90,61 +67,10 @@ const getStyle = (feature, layer) => {
 }
 
 
-const getGeoJson = {
-  "type": "FeatureCollection",
-  "features": [
 
-    {
-      "type":"Feature",
-      "id":"JOR",
-      "properties":
-        {
-          "name":"Jordan"
-        },
-      "geometry":
-        {
-          "type":"Polygon",
-          "coordinates":
-            [
-              [
-                [
-                  35.545665,
-                  32.393992
-                ]
-                ,
-                [
-                  35.719918,
-                  32.709192
-                ],
-                [
-                  36.834062,
-                  32.312938
-                ],
-                [
-                  38.792341,
-                  33.378686
-                ],
-                [
-                  39.195468,
-                  32.161009
-                ],
-                [
-                  39.004886,
-                  32.010217
-                ],
-                [
-                  37.002166,
-                  31.508413
-                ],
-                [
-                  37.998849,
-                  30.5085],[37.66812,30.338665],[37.503582,30.003776],[36.740528,29.865283],[36.501214,29.505254],[36.068941,29.197495],[34.956037,29.356555],[34.922603,29.501326],[35.420918,31.100066],[35.397561,31.489086],[35.545252,31.782505],[35.545665,32.393992]]]}},    
-  ]
-}
 GlobalMap.propTypes = {
-  individuals: PropTypes.array.isRequired,  //  eslint-disable-line
-  router: PropTypes.object.isRequired,  //eslint-disable-line
+  individuals: PropTypes.array.isRequired, //eslint-disable-line  
+  router: PropTypes.object.isRequired, //eslint-disable-line
+  geoJSON:PropTypes.array.isRequired,
 };
-
-
 export default GlobalMap;
