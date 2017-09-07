@@ -5,8 +5,8 @@ defmodule Terror.TerrorgroupView do
     %{data: render_many(terrorgroups, Terror.TerrorgroupView, "terrorgroup.json")}
   end
 
-  def render("show.json", %{individual: individual}) do
-    %{data: render_one(individual, Terror.IndividualView, "terrorgroup.json")}
+  def render("show.json", %{terrorgroup: terrorgroup}) do
+    %{data: render_one(terrorgroup, Terror.TerrorgroupView, "terrorgroup.json")}
   end
 
   def render("terrorgroup.json", %{terrorgroup: terrorgroup}) do
@@ -17,7 +17,7 @@ defmodule Terror.TerrorgroupView do
       report_title: terrorgroup.report_title,
       report: terrorgroup.report,
       sources: terrorgroup.sources,
-      methodsoffinance: terrorgroup.methodsoffinance
+      methods: terrorgroup.methodsoffinance,
     }
   end
 end

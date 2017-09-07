@@ -29,6 +29,6 @@ defmodule Terror.Router do
     post "/sessions/refresh", SessionController, :refresh
     resources "/users", UserController, only: [:create]
     resources "/individuals", IndividualController
-    resources "/terror-groups", TerrorgroupController, only: [:index]
+    resources "/terror-groups", TerrorgroupController, only: [:index,:show]
   end
 end

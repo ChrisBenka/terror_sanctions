@@ -2,7 +2,7 @@ defmodule Terror.TerrorgroupMethodoffinance do
   use Terror.Web, :model
   
   @primary_key false
-    @derive {Poison.Encoder, only: [:nationality]}
+    @derive {Poison.Encoder, only: [:method]}
 
   schema "terrorgroupmethodoffinances" do
     field :method, :string, primary_key: true
