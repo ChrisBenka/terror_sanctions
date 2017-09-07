@@ -4,7 +4,7 @@ defmodule Terror.TerrorGroupLocation do
   @primary_key false
   schema "terrorgrouplocations" do
     field :location, :string, primary_key: true
-    field :geo_locs, {:array, Geo.Point}
+    field :geo_locs, {:array, :string}
     belongs_to :terrorgroup, Terror.Terrorgroup, primary_key: true
 
     timestamps()
