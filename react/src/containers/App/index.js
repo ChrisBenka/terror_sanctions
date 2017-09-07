@@ -39,7 +39,7 @@ class App extends Component {
         {({ router, location }) => (
           <div>
             {isAuthenticated &&
-              <DashboardNavbar {...authProps} />
+              <DashboardNavbar {...authProps} router={router} />
             }
             <div style={{ display: 'flex', flex: '1' }}>
               {isAuthenticated &&

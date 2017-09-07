@@ -8,6 +8,7 @@ type Props = {
   exactly?: boolean,
   isAuthenticated: boolean,
   willAuthenticate: boolean,
+  router: object,
 }
 
 const RedirectAuthenticated = ({
@@ -15,6 +16,7 @@ const RedirectAuthenticated = ({
   exactly,
   isAuthenticated,
   willAuthenticate,
+  router,
   component: Component,
 }: Props) => (
   <Match
@@ -23,7 +25,9 @@ const RedirectAuthenticated = ({
     render={(props) => {
       if (isAuthenticated) { return <Redirect to={{ pathname: '/' }} />; }
       if (willAuthenticate) { return null; }
-      if (!willAuthenticate && !isAuthenticated) { return <Component {...props} />; }
+      if (!willAuthenticate && !isAuthenticated) {
+        return <Component {...props} router={router} />;
+      }
       return null;
     }}
   />);
