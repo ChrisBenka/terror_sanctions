@@ -13,7 +13,7 @@ export default function (state = initialState, action) {
     case 'RETRIEVED_ALL_GEO_JSONS':
       return {
         ...state,
-        geoJson: action.resposne.data.data,
+        geoJson: action.response.data,
       };
     default:
       return state;

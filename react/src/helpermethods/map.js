@@ -18,3 +18,28 @@ export function findIndividualId(marker) {
   return { individaulID, individaulName };
 }
 
+export function buildTerrorGroupCountryHash(terrorgroups) {
+  const hashMapCountriesToTerrorGroups = {};
+  terrorgroups.forEach((group) => {
+    group.locations.forEach((location) => {
+      if (!Object.keys(hashMapCountriesToTerrorGroups).includes(location.country)) {
+        hashMapCountriesToTerrorGroups[location.country] = [];
+        hashMapCountriesToTerrorGroups[location.country].push(group.name);
+      } else {
+        hashMapCountriesToTerrorGroups[location.country].push(group.name);
+      }
+    });
+  });
+  return hashMapCountriesToTerrorGroups;
+}
+
+export function filterGeoJsonByTerrorLocations(hashmapOfTerrorLocations, geoJson) {
+  const features = geoJson.features.filter((feature) => { //eslint-disable-line
+    if (Object.keys(hashmapOfTerrorLocations).includes(feature.properties.name)) {
+      feature.properties.terrorgroups = []; //  eslint-disable-line
+      feature.properties.terrorgroups = hashmapOfTerrorLocations[feature.properties.name];  //  eslint-disable-line
+      return feature;
+    }
+  });
+  return features;
+}
