@@ -3,9 +3,9 @@ import React from 'react';
 import { Match, Redirect } from 'react-router';
 
 type Props = {
-  component: any,   //eslint-disable-line
+  component: any,
   pattern: string,
-  exactly?: boolean,    //eslint-disable-line
+  exactly?: boolean,
   isAuthenticated: boolean,
   willAuthenticate: boolean,
 }
@@ -28,5 +28,8 @@ const RedirectAuthenticated = ({
     }}
   />);
 
+RedirectAuthenticated.defaultProps = {
+  exactly: true,
+};
 
 export default RedirectAuthenticated;

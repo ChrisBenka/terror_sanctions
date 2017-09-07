@@ -26,7 +26,7 @@ export function addIndividual(data) {
 }
 
 export function getIndividual(individualID) {
-  return dispatch => instance.get('individuals/' + individualID, { //  eslint-disable-line
+  return dispatch => instance.get(`individuals/${individualID}`, {
   }).then((response) => {
     dispatch({ type: 'RETRIEVED_INDIVIDUAL', response });
   })

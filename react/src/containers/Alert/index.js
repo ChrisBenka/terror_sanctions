@@ -1,4 +1,3 @@
-// @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { hideAlert } from '../../actions/alert';
@@ -45,11 +44,14 @@ class AlertContainer extends Component {
 AlertContainer.propTypes = {
   pathname: PropTypes.string.isRequired,
   visible: PropTypes.bool.isRequired,
-  timeout: PropTypes.number, //eslint-disable-line
+  timeout: PropTypes.number,
   message: PropTypes.string.isRequired,
   hideAlert: PropTypes.func.isRequired,
 };
 
+AlertContainer.defaultProps = {
+  timeout: 1000,
+};
 
 export default connect(
   state => ({

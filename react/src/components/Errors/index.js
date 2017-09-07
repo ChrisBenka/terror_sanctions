@@ -9,10 +9,10 @@ function renderErrors(errors, name) {
   ),
   );
 }
-/* eslint-disable */
+
 type Props = {
-    name: string, /* eslint-disable */
-    errors?: any, 
+    name: string, 
+    errors?: any, //  eslint-disable-line
 }
 
 const Errors = ({ errors, name }: Props) => (

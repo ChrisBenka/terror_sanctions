@@ -5,7 +5,7 @@ type Props = {
   input: Object,
   label?: string, //eslint-disable-line
   type?: string,  //eslint-disable-line
-  placeholder?: string,   //eslint-disable-line
+  placeholder?: string, //eslint-disable-line
   style?: Object, //eslint-disable-line
   meta: Object,
 }

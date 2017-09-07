@@ -1,4 +1,3 @@
-// @flow
 import React, { Component, PropTypes } from 'react';
 import { BrowserRouter, Miss } from 'react-router';
 import { connect } from 'react-redux';
@@ -19,18 +18,17 @@ import IndividualReport from '../IndividualReport';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = { width: '0', height: '0' };
     this.componentDidMount = this.componentDidMount.bind(this);
   }
   componentDidMount() {
     const token = localStorage.getItem('token');
-
     if (token) {
       this.props.authenticate();
     } else {
       this.props.unauthenticate();
     }
   }
-
 
   render() {
     const { isAuthenticated, willAuthenticate } = this.props;
@@ -53,8 +51,8 @@ class App extends Component {
               <MatchAuthenticated exactly pattern="/create-individual-report" component={AddIndividual} location={location} {...authProps} />
               <MatchAuthenticated exactly pattern="/terror-group-reports" component={Feed} location={location} {...authProps} />
               <MatchAuthenticated exactly pattern="/individual-report/:individualName/:individualID" location={location} {...authProps} component={IndividualReport} />
-              <RedirectAuthenticated pattern="/login" component={Login} {...authProps} />
-              <RedirectAuthenticated pattern="/signup" component={Signup} {...authProps} />
+              <RedirectAuthenticated pattern="/login" component={Login} {...authProps} router={router} />
+              <RedirectAuthenticated pattern="/signup" component={Signup} {...authProps} router={router} />
               <Miss component={NotFound} />
             </div>
           </div>

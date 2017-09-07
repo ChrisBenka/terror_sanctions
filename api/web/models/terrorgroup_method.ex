@@ -1,9 +1,11 @@
-defmodule Terror.TerrorGroupLocation do
+defmodule Terror.TerrorgroupMethodoffinance do
   use Terror.Web, :model
-
+  
   @primary_key false
-  schema "terrorgrouplocations" do
-    field :location, :string, primary_key: true
+    @derive {Poison.Encoder, only: [:method]}
+
+  schema "terrorgroupmethodoffinances" do
+    field :method, :string, primary_key: true
     belongs_to :terrorgroup, Terror.Terrorgroup, primary_key: true
 
     timestamps()
@@ -14,7 +16,7 @@ defmodule Terror.TerrorGroupLocation do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:location])
-    |> validate_required([:location])
+    |> cast(params, [:method])
+    |> validate_required([:nationality])
   end
 end

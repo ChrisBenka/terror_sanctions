@@ -44,7 +44,6 @@ class Alert extends Component {
       setTimeout(this.props.onClose, this.props.timeout);
     }
   }
-
   render() {
     return (
       <div className={css(styles.alert)}>
@@ -57,8 +56,12 @@ class Alert extends Component {
 }
 Alert.propTypes = {
   message: PropTypes.string.isRequired,
-  timeout: PropTypes.number,  //eslint-disable-line
+  timeout: PropTypes.number,
   onClose: PropTypes.func.isRequired,
+};
+
+Alert.defaultProps = {
+  timeout: 1000,
 };
 
 export default Alert;

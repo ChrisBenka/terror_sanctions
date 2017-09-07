@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'; //eslint-disable-line
+import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import Input from '../Input';
 
@@ -11,6 +11,7 @@ class AddIndividualForm extends Component {
   handleSubmit(data) {
     this.props.onSubmit(data);
   }
+
   render() {
     const { handleSubmit, submitting } = this.props;
 
@@ -44,20 +45,20 @@ class AddIndividualForm extends Component {
 
 const validate = (values) => {
   const errors = {};
-  if (!values.fullName) {
-    errors.fullName = 'Required';
+  if (!values.name) {
+    errors.name = 'Required';
   }
   if (!values.location) {
     errors.location = 'Required';
   }
-  if (!values.dateOfBirth) {
-    errors.dateOfBirth = 'Required';
+  if (!values.date_of_birth) {
+    errors.date_of_birth = 'Required';
   }
-  if (!values.placeOfBirth) {
-    errors.placeOfBirth = 'Required';
+  if (!values.place_of_birth) {
+    errors.place_of_birth = 'Required';
   }
-  if (!values.reportTitle) {
-    errors.reportTitle = 'Required';
+  if (!values.report_title) {
+    errors.report_title = 'Required';
   }
   if (!values.report) {
     errors.report = 'Required';
@@ -65,11 +66,11 @@ const validate = (values) => {
   if (!values.sources) {
     errors.sources = 'Required';
   }
-  if (!values.individualNationalities) {
-    errors.individualNationalities = 'Required';
+  if (!values.individualnationalities) {
+    errors.individualnationalities = 'Required';
   }
-  if (!values.individualIdentifications) {
-    errors.individualIdentifications = 'Required';
+  if (!values.individualidentifications) {
+    errors.individualidentifications = 'Required';
   }
   return errors;
 };
@@ -84,20 +85,3 @@ export default reduxForm({
   form: 'AddIndividual',
   validate,
 })(AddIndividualForm);
-
-/*
-
-    field :name, :string
-    field :location, :string
-    field :date_of_birth, Ecto.Date
-    field :date_of_death, Ecto.Date
-    field :place_of_birth, :string
-    field :report_title, :string
-    field :report, :string
-    field :sources, :string
-    field :geo_loc, Geo.Point
-    has_many :individualnationalities, Terror.IndividualNationality
-    has_many :individuallanguages, Terror.IndividualLanguage
-    has_many :individualidentifications, Terror.IndividualIdentification
-    timestamps()
-  */

@@ -4,8 +4,8 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { retriveAllIndividuals } from '../../actions/individuals';
 
-const capatilizeFirstLetters = (path) => {  //eslint-disable-line
-  return path.replace(/\w\S*/g, txt => { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });  //eslint-disable-line
+const capatilizeFirstLetters = (path) => {  // eslint-disable-line
+  return path.replace(/\w\S*/g, txt => { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); }); // eslint-disable-line
 };
 
 const beautify = (path) => {
@@ -27,7 +27,7 @@ const columns = [{
 },
 ];
 
-class Feed extends Component { //eslint-disable-line
+class Feed extends Component {
   constructor(props) {
     super(props);
     this.props.retriveAllIndividuals();
@@ -44,16 +44,15 @@ class Feed extends Component { //eslint-disable-line
           columns={columns}
           showPageSizeOptions={false}
           defaultPageSize={15}
-          getTdProps={(rowInfo) => {  //eslint-disable-line
-            return {
-              onClick: (e, handleOriginal) => {
-                router.transitionTo(`/individual-report/${rowInfo.original.name.replace(/\s/g, '')}/${rowInfo.original.id}`);
-                if (handleOriginal) {
-                  handleOriginal();
-                }
-              },
-            };
-          }}
+          getTdProps={(state, rowInfo) => ({
+            onClick: (e, handleOriginal) => {
+              router.transitionTo(`/individual-report/${rowInfo.original.name.replace(/\s/g, '')}/${rowInfo.original.id}`);
+              if (handleOriginal) {
+                handleOriginal();
+              }
+            },
+          })
+          }
         />
       </div>
     );
@@ -61,10 +60,10 @@ class Feed extends Component { //eslint-disable-line
 }
 
 Feed.propTypes = {
-  location: PropTypes.object.isRequired, //eslint-disable-line
-  individualReports: PropTypes.array.isRequired,  //eslint-disable-line
+  location: PropTypes.object.isRequired,  //  eslint-disable-line
+  individualReports: PropTypes.array.isRequired,  //  eslint-disable-line
   retriveAllIndividuals: PropTypes.func.isRequired,
-  router: PropTypes.object.isRequired,  //eslint-disable-line
+  router: PropTypes.object.isRequired,  //  eslint-disable-line
 };
 
 export default connect(

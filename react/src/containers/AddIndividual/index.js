@@ -12,6 +12,7 @@ class AddIndividual extends Component {
   handleSubmit(data) {
     this.props.addIndividual(data);
   }
+
   render() {
     return (
       <div className="light-grey-theme">
@@ -28,6 +29,5 @@ AddIndividual.propTypes = {
 };
 
 export default connect(
-  state => ({ //eslint-disable-line
-  }), { addIndividual },
+  ({}), { addIndividual },
 )(AddIndividual);

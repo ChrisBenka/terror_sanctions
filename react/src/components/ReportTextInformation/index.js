@@ -2,16 +2,14 @@ import React, { PropTypes } from 'react';
 import { textarea, input } from '@blueprintjs/core';
 
 const beautifyNationalities = (nationalities) => {
-  const beautifiedNationalities = nationalities.reduce((previousValue, element) => {  //eslint-disable-line
-    return `${previousValue}','${element.nationality}`;
-  }, '');
+  const beautifiedNationalities = nationalities.reduce((previousValue, element) =>
+    `${previousValue}','${element.nationality}`, '');
   return beautifiedNationalities.substring(1);
 };
 
 const beautifyIdentifications = (identifications) => {
-  const beautifiedIdentifications = identifications.reduce((previousValue, element) => {  //eslint-disable-line
-    return `${previousValue};${element.type},${element.nation},${element.identification}`;
-  }, '');
+  const beautifiedIdentifications = identifications.reduce((previousValue, element) =>
+    `${previousValue};${element.type},${element.nation},${element.identification}`, '');
   return beautifiedIdentifications.substring(1);
 };
 
@@ -58,5 +56,5 @@ const ReportTextInformation = props => (
 export default ReportTextInformation;
 
 ReportTextInformation.propTypes = {
-  individual: PropTypes.object.isRequired //  eslint-disable-line
+  individual: PropTypes.object.isRequired, // eslint-disable-line 
 };

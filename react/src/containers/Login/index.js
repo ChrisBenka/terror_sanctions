@@ -1,4 +1,3 @@
-// @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../actions/session';
@@ -12,7 +11,7 @@ class Login extends Component {
   }
 
   handleLogin(data) {
-    this.props.login(data, this.context.router);
+    this.props.login(data, this.props.router);
   }
 
   render() {
@@ -24,10 +23,16 @@ class Login extends Component {
     );
   }
 }
-Login.contextTypes = {
-  router: PropTypes.object,
-};
+
 Login.propTypes = {
   login: PropTypes.func.isRequired,
+  router: PropTypes.object.isRequired,  //  eslint-disable-line
 };
-export default connect(null, { login })(Login);
+
+const mergeProps = (state, actions, ownProps) => ({
+  ...state,
+  ...actions,
+  ...ownProps,
+});
+
+export default connect(null, { login }, mergeProps)(Login);

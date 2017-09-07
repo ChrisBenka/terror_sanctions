@@ -81,6 +81,7 @@
     "react-leaflet": "^1.4.1",
     "react-leaflet-markercluster": "^1.1.6",
     "react-mapbox-gl": "^2.1.0",
+    "react-overlays": "^0.8.0",
     "react-quill": "^1.0.0",
     "react-redux": "^5.0.5",
     "react-router": "^4.0.0-alpha.5",
