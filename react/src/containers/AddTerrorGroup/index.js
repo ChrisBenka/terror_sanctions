@@ -1,33 +1,33 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { addIndividual } from '../../actions/individuals';
-import AddIndividualForm from '../../components/AddIndividualForm';
+import { addTerrorGroup } from '../../actions/terrorgroups';
+import AddTerrorGroupForm from '../../components/AddTerrorGroupForm';
 
-class AddIndividual extends Component {
+class AddTerrorGroup extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(data) {
-    this.props.addIndividual(data);
+    this.props.addTerrorGroup(data);
   }
 
   render() {
     return (
       <div className="light-grey-theme">
         <div className="container">
-          <AddIndividualForm onSubmit={this.handleSubmit} />
+          <AddTerrorGroupForm onSubmit={this.handleSubmit} />
         </div>
       </div>
     );
   }
 }
 
-AddIndividual.propTypes = {
-  addIndividual: PropTypes.func.isRequired,
+AddTerrorGroup.propTypes = {
+  addTerrorGroup: PropTypes.func.isRequired,
 };
 
 export default connect(
-  (null), { addIndividual },
-)(AddIndividual);
+  (null), { addTerrorGroup },
+)(AddTerrorGroup);

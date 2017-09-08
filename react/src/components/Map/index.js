@@ -15,15 +15,15 @@ const getStyle = () => ({
   opacity: 0.65,
 });
 
-const onClick = () => {
-  console.log('hit');
-}
+const onClick = (layer) => {
+  layer.openPopup();
+};
 
 const onEachFeature = (feature, layer) => {
   if (feature.properties && feature.properties.name) {
     layer.bindPopup(feature.properties.terrorgroups.toString());
     layer._popup.setLatLng(feature.geometry.coordinates[0]);  //eslint-disable-line
-    layer.on({click:onClick})
+    layer.on({ click: onClick });
   }
 };
 
