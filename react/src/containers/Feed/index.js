@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { retriveAllIndividuals } from '../../actions/individuals';
+import { retriveAllTerrorGroups } from '../../actions/terrorgroups';
 
 const capatilizeFirstLetters = (path) => {  // eslint-disable-line
   return path.replace(/\w\S*/g, txt => { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); }); // eslint-disable-line
@@ -66,8 +67,33 @@ Feed.propTypes = {
   router: PropTypes.object.isRequired,  //  eslint-disable-line
 };
 
-export default connect(
-  state => ({
-    individualReports: state.individuals.individuals,
-  }), { retriveAllIndividuals },
-)(Feed);
+
+const mapStateToProps = (state,ownProps) => {
+  switch (ownProps.reporType) {
+    case "individual" :
+      return {
+        ...state,
+        reports: state.individuals.individuals,
+    }
+    case "terrorgroup": 
+      return {
+        ...state,
+        reports: state.terrorgroups.terrorgroups,
+    }
+  }
+}
+
+const mapActionsToProps = (dispatch) => {
+  console.log(dispatch)
+}
+
+const mergeProps = (state,actions,ownProps) => {
+  console.log(state);
+  console.log(actions);
+  console.log(ownProps);
+}
+
+
+
+
+export default connect(mapStateToProps, mapActionsToProps,mergeProps)(Feed);
