@@ -21,9 +21,8 @@ class AddTerrorGroupForm extends Component {
         <form className="add-Indiv-form-body white-theme" onSubmit={handleSubmit(this.handleSubmit)}>
           <Field name="name" type="text" component={Input} placeholder="Name of Terror Group" />
           <Field name="place_of_origin" type="text" component={Input} placeholder="Place of Origin" />
-          <Field name="date_of_origin" type="date" component={Input} />
+          <Field name="year_of_origin" type="number" component={Input} placeholder="Year of origin" />
           <Field name="mission" type="text" component={Input} placeholder="Terror Group's mission" />
-          <Field name="report_title" type="text" component={Input} placeholder="Report Title" />
           <Field name="report" type="textarea" component={Input} placeholder="Report" />
           <Field name="sources" type="textarea" component={Input} placeholder="Sources" />
           <Field name="locations" type="text" component={Input} placeholder="Country Operating Locations" />
