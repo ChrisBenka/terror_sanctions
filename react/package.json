@@ -67,6 +67,7 @@
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
     "bootstrap-sidebar": "^0.2.2-retry",
+    "elemental": "^0.6.1",
     "jquery": "^3.2.1",
     "leaflet": "^1.2.0",
     "leaflet.markercluster": "^1.1.0",

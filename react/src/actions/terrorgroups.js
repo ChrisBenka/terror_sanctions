@@ -24,3 +24,13 @@ export function retrieveAllGeoJsons() {
       dispatch({ type: 'SHOW_ALERT', message: 'Unable to retrieve gejson information' });
     });
 }
+
+export function addTerrorGroup(data) {
+  return dispatch => instance.post('/terror-groups', data)
+    .then(() => {
+      dispatch({ type: 'SHOW_ALERT', message: 'TerrorGroup Successfully Added' });
+    })
+    .catch(() => {
+      dispatch({ type: 'SHOW_ALERT', message: 'Problem creating terror group' });
+    });
+}

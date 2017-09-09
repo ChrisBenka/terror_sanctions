@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { retriveAllIndividuals } from '../../actions/individuals';
+import { retriveAllTerrorGroups } from '../../actions/terrorgroups';
 
 const capatilizeFirstLetters = (path) => {  // eslint-disable-line
   return path.replace(/\w\S*/g, txt => { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); }); // eslint-disable-line
@@ -13,40 +14,26 @@ const beautify = (path) => {
   return capatilizeFirstLetters(pageTitle);
 };
 
-const columns = [{
-  Header: 'Name',
-  accessor: 'name',
-},
-{
-  Header: 'Date of Birth',
-  accessor: 'date_of_birth',
-},
-{
-  Header: 'Location',
-  accessor: 'location',
-},
-];
-
 class Feed extends Component {
   constructor(props) {
     super(props);
-    this.props.retriveAllIndividuals();
+    this.props.retrieveFeedData();
   }
 
   render() {
-    const { location, individualReports, router } = this.props;
+    const { location, reports, router, reportType, columns } = this.props;
 
     return (
       <div className="container">
         <h1 className="text-center">{beautify(location.pathname)}</h1>
         <ReactTable
-          data={individualReports}
+          data={reports}
           columns={columns}
           showPageSizeOptions={false}
           defaultPageSize={15}
           getTdProps={(state, rowInfo) => ({
             onClick: (e, handleOriginal) => {
-              router.transitionTo(`/individual-report/${rowInfo.original.name.replace(/\s/g, '')}/${rowInfo.original.id}`);
+              router.transitionTo(`/${reportType}/${rowInfo.original.name.replace(/\s/g, '')}/${rowInfo.original.id}`);
               if (handleOriginal) {
                 handleOriginal();
               }
@@ -61,13 +48,77 @@ class Feed extends Component {
 
 Feed.propTypes = {
   location: PropTypes.object.isRequired,  //  eslint-disable-line
-  individualReports: PropTypes.array.isRequired,  //  eslint-disable-line
-  retriveAllIndividuals: PropTypes.func.isRequired,
+  reports: PropTypes.array.isRequired,  //  eslint-disable-line
+  retrieveFeedData: PropTypes.func.isRequired,
   router: PropTypes.object.isRequired,  //  eslint-disable-line
+  reportType: PropTypes.string.isRequired,
+  columns: PropTypes.array.isRequired, //eslint-disable-line
 };
 
-export default connect(
-  state => ({
-    individualReports: state.individuals.individuals,
-  }), { retriveAllIndividuals },
-)(Feed);
+
+const mapStateToProps = (state, ownProps) => {
+  switch (ownProps.pathname) {
+    case '/individual-reports':
+      return {
+        ...state,
+        reports: state.individuals.individuals,
+      };
+    case '/terror-group-reports':
+      return {
+        ...state,
+        reports: state.terrorgroups.terrorgroups,
+      };
+    default:
+      return {
+        ...state,
+      };
+  }
+};
+
+const mapActionsToProps = (dispatch, ownProps) => {
+  switch (ownProps.pathname) {
+    case '/individual-reports':
+      return {
+        ...ownProps,
+        retrieveFeedData: retriveAllIndividuals,
+      };
+    case '/terror-group-reports':
+      return {
+        ...ownProps,
+        retrieveFeedData: retriveAllTerrorGroups,
+      };
+    default:
+      return {
+        ...ownProps,
+      };
+  }
+};
+
+const mergeProps = (state, actions, ownProps) => {
+  switch (ownProps.pathname) {
+    case '/individual-reports' :
+      return {
+        ...ownProps,
+        ...state,
+        ...actions,
+        reportType: 'individual-report',
+        columns: [{ Header: 'Name', accessor: 'name' }],
+      };
+    case '/terror-group-reports':
+      return {
+        ...ownProps,
+        ...state,
+        ...actions,
+        reportType: 'terror-group-report',
+        columns: [{ Header: 'Name', accessor: 'name' }],
+      };
+    default:
+      return {
+        ...ownProps,
+        ...state,
+        ...actions,
+      };
+  }
+};
+
+export default connect(mapStateToProps, mapActionsToProps, mergeProps)(Feed);
