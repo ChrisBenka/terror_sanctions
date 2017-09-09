@@ -2,11 +2,10 @@ defmodule Terror.TerrorgroupLocation do
   use Terror.Web, :model
   
   @primary_key false
-    @derive {Poison.Encoder, only: [:country,:geocodes]}
+    @derive {Poison.Encoder, only: [:country]}
 
   schema "terrorgrouplocations" do
     field :country, :string, primary_key: true
-    field :geocodes, {:array,:string}, primary_key: true
     belongs_to :terrorgroup, Terror.Terrorgroup, primary_key: true
 
     timestamps()
@@ -17,7 +16,7 @@ defmodule Terror.TerrorgroupLocation do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:country,:geocodes])
-    |> validate_required([:country,:geocodes])
+    |> cast(params, [:terrorgroup_id,:country,])
+    |> validate_required([:terrorgroup_id,:country])
   end
 end

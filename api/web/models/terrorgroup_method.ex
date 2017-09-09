@@ -16,7 +16,7 @@ defmodule Terror.TerrorgroupMethodoffinance do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:method])
-    |> validate_required([:nationality])
+    |> cast(params, [:method,:terrorgroup_id])
+    |> validate_required([:method,:terrorgroup_id])
   end
 end

@@ -3,6 +3,8 @@ defmodule Terror.TerrorgroupController do
 
   alias Terror.Terrorgroup
   alias Terror.TerrorgroupMethodoffinance
+  alias Terror.TerrorgroupLocation
+
 
   def index(conn, _params) do
     terrorgroups = Repo.preload(Repo.all(Terrorgroup),[:methodsoffinance,:locations])
@@ -27,10 +29,10 @@ defmodule Terror.TerrorgroupController do
       {:ok, terrorgroup} -> 
         terrorgroup = Repo.preload(Repo.get(Terrorgroup, terrorgroup.id),[:locations,:methodsoffinance])
         for methodOfFinance <- methodsOfFinances, do: build_terrorgroup_method_of_finance(methodOfFinance,terrorgroup.id)
-        #for location <- locations, do: build_terror_group_location(location,terrorgroup)
-      conn
-      |> put_status(:created)
-      |> render("show.json", terrorgroup: terrorgroup)
+        for location <- locations, do: build_terror_group_location(location,terrorgroup.id)
+        conn
+        |> put_status(:created)
+        |> render("show.json", terrorgroup: terrorgroup)
 
       {:error, changeset} ->
         conn
@@ -41,7 +43,11 @@ defmodule Terror.TerrorgroupController do
 
   def build_terrorgroup_method_of_finance(method,terrorgroup_id) do
     method_changeset = TerrorgroupMethodoffinance.changeset(%TerrorgroupMethodoffinance{},%{terrorgroup_id: terrorgroup_id, method: method})
-    IO.inspect(method_changeset)
+    Repo.insert(method_changeset)
+  end
+  def build_terror_group_location(location,terrorgroup_id) do
+    location_changeset = TerrorgroupLocation.changeset(%TerrorgroupLocation{},%{terrorgroup_id: terrorgroup_id, country: location})
+    Repo.insert(location_changeset)
   end
 
 end
