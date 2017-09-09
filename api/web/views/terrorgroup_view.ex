@@ -12,9 +12,8 @@ defmodule Terror.TerrorgroupView do
   def render("terrorgroup.json", %{terrorgroup: terrorgroup}) do
     %{id: terrorgroup.id,
       name: terrorgroup.name,
-      date_of_origin: terrorgroup.date_of_origin,
+      year_of_origin: terrorgroup.year_of_origin,
       mission: terrorgroup.mission,
-      report_title: terrorgroup.report_title,
       report: terrorgroup.report,
       sources: terrorgroup.sources,
       methods: terrorgroup.methodsoffinance,

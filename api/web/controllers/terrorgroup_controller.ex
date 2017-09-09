@@ -15,13 +15,16 @@ defmodule Terror.TerrorgroupController do
     render(conn, "show.json", terrorgroup: terrorgroup)
   end
   def create(conn, terrorgroup_params) do
+    {year_of_origin, _} = Integer.parse(terrorgroup_params["year_of_origin"])
     terrorgroup = %{name: terrorgroup_params["name"], place_of_origin: terrorgroup_params["place_of_origin"],
-    date_of_origin: terrorgroup_params["date_of_origin"], mission: terrorgroup_params["mission"],
-    report_title: terrorgroup_params["report_title"], report: terrorgroup_params["report"],
+    year_of_origin: year_of_origin, mission: terrorgroup_params["mission"], 
+    report: terrorgroup_params["report"],
     sources: terrorgroup_params["sources"]}
 
+
     changeset = Terrorgroup.changeset(%Terrorgroup{},terrorgroup)
-    
+    IO.inspect(changeset)
+
     methodsOfFinances = String.split(terrorgroup_params["methodsoffinance"],",")
     locations = String.split(terrorgroup_params["locations"],",")
 
