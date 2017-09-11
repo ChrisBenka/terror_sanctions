@@ -54,16 +54,3 @@ defmodule Terror.TerrorgroupController do
   end
 
 end
-
-
-
-    # field :name, :string
-    # field :place_of_origin, :string
-    # field :date_of_origin, Ecto.Date
-    # field :mission, :string
-    # field :report_title, :string
-    # field :report, :string
-    # field :sources, :string
-    # has_many :locations, Terror.TerrorgroupLocation
-    # has_many :methodsoffinance, Terror.TerrorgroupMethodoffinance
-    # timestamps()

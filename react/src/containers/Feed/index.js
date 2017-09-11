@@ -102,7 +102,7 @@ const mergeProps = (state, actions, ownProps) => {
         ...state,
         ...actions,
         reportType: 'individual-report',
-        columns: [{ Header: 'Name', accessor: 'name' }],
+        columns: [{ Header: 'Name', accessor: 'name' }, { Header: 'Report', accessor: 'report' }],
       };
     case '/terror-group-reports':
       return {
@@ -110,7 +110,7 @@ const mergeProps = (state, actions, ownProps) => {
         ...state,
         ...actions,
         reportType: 'terror-group-report',
-        columns: [{ Header: 'Name', accessor: 'name' }],
+        columns: [{ Header: 'Name', accessor: 'name' }, { Header: 'Year of Origin', accessor: 'year_of_origin' }],
       };
     default:
       return {
