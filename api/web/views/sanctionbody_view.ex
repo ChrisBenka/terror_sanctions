@@ -15,7 +15,7 @@ defmodule Terror.SanctionbodyView do
       location: sanctionbody.location,
       directive: sanctionbody.directive,
       sources: sanctionbody.sources,
-      geo_loc: sanctionbody.geo_loc,
+      geo_loc: Geo.JSON.encode(sanctionbody.geo_loc),
       sanctioned_individuals: sanctionbody.individuals,
       sanctioned_terrorgroups: sanctionbody.terrorgroups
     }

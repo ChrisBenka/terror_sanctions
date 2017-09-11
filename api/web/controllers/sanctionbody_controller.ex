@@ -1,4 +1,4 @@
-defmodule Terror.Sanctionbodycontroller do
+defmodule Terror.SanctionbodyController do
   use Terror.Web, :controller
 
   alias Terror.Sanctionbody
