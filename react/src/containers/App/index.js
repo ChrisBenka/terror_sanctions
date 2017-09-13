@@ -8,7 +8,7 @@ import Login from '../Login';
 import Signup from '../Signup';
 import MatchAuthenticated from '../../components/MatchAuthenticated';
 import RedirectAuthenticated from '../../components/RedirectAuthenticated';
-import Sidebar from '../../components/Sidebar';
+import Searchbar from '../../components/Sidebar';
 import DashboardNavbar from '../DashboardNavbar';
 import Alert from '../Alert';
 import Feed from '../Feed';
@@ -44,7 +44,7 @@ class App extends Component {
             }
             <div style={{ display: 'flex', flex: '1' }}>
               {isAuthenticated &&
-                <Sidebar router={router} />
+                <Searchbar router={router} />
               }
               <Alert pathname={location.pathname} />
               <MatchAuthenticated exactly pattern="/" component={Home} {...authProps} router={router} />
@@ -52,10 +52,14 @@ class App extends Component {
               <MatchAuthenticated exactly pattern="/create-individual-report" component={AddIndividual} location={location} {...authProps} />
               <MatchAuthenticated exactly pattern="/create-terror-group-report" component={AddTerrorGroup} location={location} {...authProps} />
               <MatchAuthenticated exactly pattern="/terror-group-reports" component={Feed} location={location} {...authProps} router={router} />
+              <MatchAuthenticated exactly pattern="/list-of-sanction-bodies" component={Feed} location={location} {...authProps} router={router} />
               <MatchAuthenticated exactly pattern="/individual-report/:individualName/:individualID" location={location} {...authProps} component={IndividualReport} />
               <RedirectAuthenticated pattern="/login" component={Login} {...authProps} router={router} />
               <RedirectAuthenticated pattern="/signup" component={Signup} {...authProps} router={router} />
               <Miss component={NotFound} />
+              {isAuthenticated &&
+                <Searchbar router={router} />
+              }
             </div>
           </div>
         )}

@@ -21,13 +21,13 @@ class DashboardNavbar extends Component {
         <div className="pt-navbar-group pt-align-left dashboard-navbar-left-links">
           <img src="src/assets/images/home/logo.png" className="dashboard-nav-logo pull-left" alt="" />
           <div className="pt-navbar-heading">Terror Sanctions</div>
-          <input className="pt-input" placeholder="Search files..." type="text" />
         </div>
         <div className="pt-navbar-group pt-align-right dashboard-navbar-right-links">
           {isAuthenticated &&
             <span>{currentUser.data.username}</span>
           }
-          <button className="pt-button pt-minimal pt-icon-home"><Link className="dashboard-nav-link" to="/">Home</Link></button>
+          <button className="pt-button pt-minimal pt-icon-globe"><Link className="dashboard-nav-link" to="/">Map</Link></button>
+          <button className="pt-button pt-minimal pt-icon-graph"><Link className="dashboard-nav-link" to="/">Graph</Link></button>
           <button className="pt-button pt-minimal pt-icon-document">Files</button>
           <span className="pt-navbar-divider" />
           <button className="pt-button pt-minimal pt-icon-user" />

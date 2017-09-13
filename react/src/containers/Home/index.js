@@ -2,12 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session';
 import WorldMap from '../Map';
+import histogram from '../../components/histogram';
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
-  }
+  }  
 
   handleLogout() {
     this.props.logout(this.props.router);
@@ -20,6 +21,9 @@ class Home extends Component {
         {isAuthenticated &&
           <div>
             <WorldMap router={router} />
+            <div className="histogram" >
+              histogram here
+            </div>
           </div>
         }
       </div>

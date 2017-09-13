@@ -4,6 +4,7 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { retriveAllIndividuals } from '../../actions/individuals';
 import { retriveAllTerrorGroups } from '../../actions/terrorgroups';
+import { retireveAllSanctionBodies } from '../../actions/sanctionbodies';
 
 const capatilizeFirstLetters = (path) => {  // eslint-disable-line
   return path.replace(/\w\S*/g, txt => { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); }); // eslint-disable-line
@@ -87,6 +88,11 @@ const mapActionsToProps = (dispatch, ownProps) => {
         ...ownProps,
         retrieveFeedData: retriveAllTerrorGroups,
       };
+    case '/list-of-sanction-bodies':
+      return {
+        ...ownProps,
+        retrieveFeedData: retireveAllSanctionBodies,
+      }
     default:
       return {
         ...ownProps,
@@ -111,6 +117,14 @@ const mergeProps = (state, actions, ownProps) => {
         ...actions,
         reportType: 'terror-group-report',
         columns: [{ Header: 'Name', accessor: 'name' }, { Header: 'Year of Origin', accessor: 'year_of_origin' }],
+      };
+    case '/list-of-sanction-bodies': 
+      return {
+       ...ownProps,
+        ...state,
+        ...actions,
+        reportType: 'sanction-body-report',
+        columns: [{ Header: 'Name', accessor: 'name' }, { Header: 'Location', accessor: 'location' }, { Header: 'Mandate', accessor: 'directive' }],
       };
     default:
       return {

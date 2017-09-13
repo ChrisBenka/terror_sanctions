@@ -4,6 +4,7 @@ import session from './session';
 import alert from './alert';
 import individuals from './individuals';
 import terrorgroups from './terrorgroups';
+import sanctionbodies from './sanctionbodies';
 
 const appReducer = combineReducers({
   form,
@@ -11,6 +12,7 @@ const appReducer = combineReducers({
   alert,
   individuals,
   terrorgroups,
+  sanctionbodies,
 });
 
 export default function (state, action) {

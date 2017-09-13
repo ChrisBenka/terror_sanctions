@@ -34,3 +34,4 @@ export function addTerrorGroup(data) {
       dispatch({ type: 'SHOW_ALERT', message: 'Problem creating terror group' });
     });
 }
+

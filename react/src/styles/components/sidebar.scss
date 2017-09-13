@@ -1,8 +1,11 @@
 .menu{
-    background-color: #261c25;
+    background-color: #ffffff;
     height: 100vh;
     display: 'flex' !important;
     flex-direction:'column' !important;
+    border-left: 10px solid #CED9E0;
+    border-right: 10px solid #CED9E0;
+    width: 22em;
 }
 .menu-item{
     color:white;
@@ -14,3 +17,7 @@
 .men-item{
     z-index:1;
 }
+.search-all{
+    margin-top: 2em;
+}
+
