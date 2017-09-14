@@ -7,7 +7,7 @@ defmodule Terror.TerrorgroupMethodoffinance do
   schema "terrorgroupmethodoffinances" do
     field :method, :string, primary_key: true
     belongs_to :terrorgroup, Terror.Terrorgroup, primary_key: true
-
+    
     timestamps()
   end
 

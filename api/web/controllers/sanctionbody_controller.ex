@@ -7,6 +7,7 @@ defmodule Terror.SanctionbodyController do
 
 
   def index(conn, _params) do
+    IO.puts("hit")
     sanctionbodies = Repo.preload(Repo.all(Sanctionbody),[:individuals,:terrorgroups])
     render(conn, "index.json", sanctionbodies: sanctionbodies)
   end

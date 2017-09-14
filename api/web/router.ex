@@ -31,5 +31,6 @@ defmodule Terror.Router do
     resources "/individuals", IndividualController
     resources "/terror-groups", TerrorgroupController, only: [:index,:show,:create]
     resources "/sanction-bodies", SanctionbodyController, only: [:index]
+    get "/search/:query", SearchController, :search
   end
 end

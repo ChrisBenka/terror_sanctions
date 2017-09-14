@@ -28,7 +28,7 @@ defmodule Terror.SessionController do
 
   def refresh(conn, _params) do
     user = Guardian.Plug.current_resource(conn)
-    IO.inspect(conn)
+    IO.inspect(user)
     jwt = Guardian.Plug.current_token(conn)
     {:ok, claims} = Guardian.Plug.claims(conn)
 
