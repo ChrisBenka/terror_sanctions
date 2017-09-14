@@ -14,7 +14,7 @@ class SearchMenu extends Component {
   render() {
     const { router, onSubmit } = this.props;
     return (
-        <Sidebar router={router} onSubmit={this.handleSignup} />
+        <Sidebar router={router} onSubmit={this.handleSearch} />
     );
   }
 }

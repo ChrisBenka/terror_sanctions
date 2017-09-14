@@ -13,28 +13,25 @@ class SearchMenu extends Component {
     this.props.onSubmit(data);
   }
   render() {
-    const { router } = this.props;
-    return(
-    <Menu className="menu">
-      <h4 className="font-grey">Search</h4>
-      <div className="pt-input-group .pt-large search-all">
-        <Field
-          name="query"
-          type="search"
-          component={Input}
-          placeholder="Search"
-          className="pt-input"
-        />
-        <span className="pt-icon pt-icon-search"></span>
-      </div>
-    </Menu>
-    )
-  }
+    const { handleSubmit, router } = this.props;
+   
+   return (
+     <form className="menu" onSubmit={handleSubmit(this.handleSubmit)}>
+        <h4 className="font-grey">Search</h4>
+          <div className="pt-input-group .pt-large search-all">
+            <Field
+              name="query"
+              type="search"
+              component={Input}
+              className="pt-icon-search"
+            />
+            <span className="pt-icon pt-icon-search"></span>
+          </div>
+     </form>
+      
+   )
+  } 
 }
-
-SearchMenu.propTypes = {
-  router: PropTypes.object.isRequired,  //  eslint-disable-line
-};
 
 const validate = (values) => {
   const errors = {};
@@ -45,9 +42,13 @@ const validate = (values) => {
 };
 
 
+SearchMenu.propTypes = {
+  router: PropTypes.object.isRequired,  //  eslint-disable-line
+  onSubmit: PropTypes.func.isRequired,
 
-
+};
+   
 export default reduxForm({
-  form: 'search',
+  form:'search',
   validate,
-})(SearchMenu);
+})(SearchMenu);   

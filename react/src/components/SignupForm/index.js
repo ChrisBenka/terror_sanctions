@@ -43,7 +43,7 @@ class SignupForm extends Component {
           type="email"
           component={Input}
           placeholder="Email"
-          className="form-control"
+          className="form-conrol"
         />
         <Field
           name="password"

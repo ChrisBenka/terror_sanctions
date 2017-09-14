@@ -5,8 +5,8 @@ const instance = axios.create({
   timeout: 1000,
 });
 
-export function search() {
-  return dispatch => instance.get('/search')
+export function search(data) {
+  return dispatch => instance.get(`/search/${data.query}/`)
     .then((response) => {
       dispatch({ type: 'RETIREVED_SEARCH_DATA', response });
     })
