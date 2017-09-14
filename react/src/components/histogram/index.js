@@ -1,18 +1,18 @@
 import React, { PropTypes } from 'react';
 import { Menu, MenuItem } from '@blueprintjs/core';
 
-const histogram = (props) => {
+const Histogram = (props) => {
   const { router } = props;
   return (
-      <div>
-        <p>asdjkljsadkljdklsa</p>
-      </div>
+    <div className="menu">
+      <p> Please select an entity to begin </p>
+    </div>
   );
 };
 
 
-histogram.propTypes = {
+Histogram.propTypes = {
   router: PropTypes.object.isRequired,  //  eslint-disable-line
 };
 
-export default histogram;
+export default Histogram;

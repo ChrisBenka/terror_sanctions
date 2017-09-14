@@ -8,7 +8,7 @@ import Login from '../Login';
 import Signup from '../Signup';
 import MatchAuthenticated from '../../components/MatchAuthenticated';
 import RedirectAuthenticated from '../../components/RedirectAuthenticated';
-import Searchbar from '../../components/Sidebar';
+import SearchMenu from '../../containers/Searchbar';
 import DashboardNavbar from '../DashboardNavbar';
 import Alert from '../Alert';
 import Feed from '../Feed';
@@ -44,7 +44,7 @@ class App extends Component {
             }
             <div style={{ display: 'flex', flex: '1' }}>
               {isAuthenticated &&
-                <Searchbar router={router} />
+                <SearchMenu router={router} />
               }
               <Alert pathname={location.pathname} />
               <MatchAuthenticated exactly pattern="/" component={Home} {...authProps} router={router} />
@@ -58,7 +58,7 @@ class App extends Component {
               <RedirectAuthenticated pattern="/signup" component={Signup} {...authProps} router={router} />
               <Miss component={NotFound} />
               {isAuthenticated &&
-                <Searchbar router={router} />
+                <SearchMenu router={router} />
               }
             </div>
           </div>
